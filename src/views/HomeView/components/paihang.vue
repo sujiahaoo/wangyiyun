@@ -29,18 +29,9 @@
 </template>
 
 <script>
-    import axios from 'axios';
  export default{ 
         props:['paihang'],
  
-         async created(){
-            axios
-            .get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page')
-            .then((res) => {
-            //   this.song = res.data.data.blocks[5].creatives;
-              this.paihang=res.data.data.blocks[5].creatives;
-              
-            })
-        },
+        
     }
 </script>
