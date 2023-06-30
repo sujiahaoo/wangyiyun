@@ -2,6 +2,9 @@ import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
 import indexView from './views/index.vue';
+import Switch from './compontents/Switch.vue';
+Vue.component('V-Switch', Switch);
+
 Vue.component('Icon', Icon);
 
 import Vant from 'vant';
