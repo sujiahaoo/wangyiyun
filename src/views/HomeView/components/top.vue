@@ -12,7 +12,11 @@
      </div>
      <!-- <van-popup v-model="show">内容</van-popup>
       -->
-      <van-popup v-model="show" closeable position="left" :style="{ width: '45%', height: '100%' }" />
+      <!-- <van-popup v-model="show" closeable position="left" :style="{ width: '80%', height: '100%' }" >
+        
+              
+      </van-popup> -->
+      
 </div>
 </template>
 <script>
@@ -28,6 +32,7 @@ export default {
       show: false,
     };
   },
+  
  
 }
 </script>

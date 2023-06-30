@@ -1,6 +1,6 @@
 <template>
     <div>
-  <ul v-for="item in paihang" :key="item.id" class="scroll-item w-[85vw] rounded-2xl mr-5 bg-white">
+  <ul v-for="item in paihang" :key="item.id" class="scroll-item w-[85vw] rounded-xl mr-5 bg-white">
                       
                       <li class=" w-[89vw] h-[14.17vw] mb-4 flex items-center" >
                           <div class="font-[700] flex items-center ">
