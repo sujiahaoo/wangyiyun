@@ -9,17 +9,6 @@
     <banners :banners="banners" />
     <!-- 菜单 -->
 
-
-
-    <!-- <div class="horizontal-container overflow-hidden mt-7">
-      <div class="scroll-wrapper" ref="scroll">
-        <div class="scroll-content">
-          <menus :menus="menus"></menus>
-        </div>
-      </div>
-    </div> -->
-   
-
     <div class=" overflow-hidden h-[23vw]">
      
       <div class="scroll-wrapper" ref="scroll">
@@ -31,11 +20,11 @@
     </div>
     <!-- 歌单 -->
     <div class="w-sreen h-[46vw] text-xs mt-4 overflow-hidden">
-      <div class="w h-[6vw] flex now">
+      <div class="w-[95vw] h-[6vw] flex now mx-auto">
         <p class="flex ml-[5vw]">推荐歌单
           <icon class="mt-0" icon="ep:arrow-right-bold" color="black" width="15" />
         </p>
-        <icon class="mt-1" icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
+        <icon class="ml-[5vw]" icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
       </div>
       <div class="scroll-wrapper" ref="menus">
         <div class="scroll-content flex w-[170vw]">
@@ -46,14 +35,21 @@
     </div>
     <!-- 新歌速递 -->
     <!-- <song /> -->
-    <div class=" overflow-hidden h-[74vw]">
-      <div class="flex justify-between wrapper mb-4">
-        <div class="flex items-center  ml-[8vw]">
+    <div class=" overflow-hidden h-[74vw] relative mt-[4vw]">
+      <div class="flex justify-between wrapper mb-4 z-999 ">
+        <div class="flex items-center  ml-[8vw] ">
           <span class="text-xs">新歌新碟/数字专辑</span>
-          <icon icon="ep:arrow-right-bold" color="black" width="15" />
+          <icon icon="ep:arrow-right-bold" color="black" width="15"/>
+          
         </div>
-        <icon icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
+        
       </div>
+      <span class="absolute left-[96vw] top-[-1vw]">
+      <icon class="mt-1" icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup"/>
+
+      </span>
+      
+
       <div class="scroll-wrapper" ref="song">
         <div class="scroll-content flex w-[420vw]">
           <song :song="song" />
@@ -91,9 +87,9 @@
         <icon icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
       </div>
       <div class="scroll-wrapper overflow-hidden" ref="scrollsong">
-        <ul class="scroll-content flex w-[210vw]">
+        <ul class="scroll-content flex w-[185vw]">
           <li
-            class="scroll-item w-[105.61vw] h-[35.44vw] mr-3 p-3 flex flex-col justify-around box-border rounded-2xl bg-gradient-to-b from-[#a0a07d] to-[#b3b599]">
+            class="scroll-item w-[90vw] h-[35.44vw] mr-3 p-3 flex flex-col justify-around box-border rounded-2xl bg-gradient-to-b from-[#a0a07d] to-[#b3b599]">
             <div>
               <p class="flex items-center w-[47vw] mb-[1vw]">
                 <Icon icon="solar:chat-round-like-linear" width="20" color="white" />
@@ -113,7 +109,7 @@
             </div>
           </li>
           <li
-            class="scroll-item w-[80.61vw] h-[35.44vw] mr-3 p-3 flex flex-col justify-around  box-border rounded-2xl bg-gradient-to-b from-[#937ea2] to-[#aa95b9]">
+            class="scroll-item w-[90vw] h-[35.44vw] mr-3 p-3 flex flex-col justify-around  box-border rounded-2xl bg-gradient-to-b from-[#937ea2] to-[#aa95b9]">
             <div>
               <p class="flex items-center w-[47vw] mb-[1vw]">
                 <Icon icon="solar:chat-round-like-linear" width="20" color="white" />
@@ -138,12 +134,12 @@
 
     <!-- <van-cell is-link @click="showPopup">展示弹出层</van-cell> -->
     <van-popup closeable v-model="show" position="bottom"
-      :style="{ height: '30%', borderRadius: '10px 10px 0 0' }">
+      :style="{ height: '20%', borderRadius: '10px 10px 0 0' }">
       <p class="ml-4 mt-5 w-[90vw] h-[8vw] border-b-2 border-[#000]">推荐歌单</p>
-      <p class="flex  items-center "><Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="mdi:like" /><b class="ml-[5vw]">优点推荐</b></p>
-      <p class="flex  items-center"> <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="ph:prohibit-bold"/><b class="ml-[5vw]">减少推荐</b></p>
+      <p class="flex font-[5vw] mt-[3vw] items-center "><Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="mdi:like" /><b class="ml-[5vw]">优点推荐</b></p>
+      <p class="flex font-[5vw] items-center"> <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="ph:prohibit-bold"/><b class="ml-[5vw]">减少推荐</b></p>
 
-      <p class="flex  items-center"><Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="material-symbols:refresh"/><b class="ml-[5vw]">刷新</b></p>
+      <p class="flex text-[5vw] items-center"><Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="material-symbols:refresh"/><b class="ml-[5vw]">刷新</b></p>
 
     </van-popup>
 
@@ -223,7 +219,7 @@ export default {
       )
       .then((res) => {
         this.day = res.data.data.calendarEvents.slice(0, 2);
-        console.log(this.day);
+        // console.log(this.day);
       })
 
     axios
@@ -236,7 +232,7 @@ export default {
     axios.get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page')
       .then(res => {
         this.banners = res.data.data.blocks[0].extInfo.banners;
-        console.log(this.banners);
+        // console.log(this.banners);
       })
       .catch(err => {
         console.log(err);
@@ -249,10 +245,13 @@ export default {
       .catch(err => {
         console.log(err);
       })
-    axios.get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/personalized?limit=6')
+      //歌单
+    axios.get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page')
       .then(res => {
-        this.songdan = res.data.result
-        log(res.data.result)
+        this.songdan = res.data.data.blocks[1].creatives.slice(1);
+        console.log( this.songdan);
+        
+       
       })
       .catch(err => {
         console.log(err);
@@ -301,8 +300,8 @@ img {
 }
 
 .scroll-item {
-  /* height :40vw; */
-  font-size: 24px;
+  
+  font-size: 20px;
   display: inline-grid;
 
   padding: 0 10px;
@@ -310,4 +309,6 @@ img {
 
 .ps {
   white-space: normal;
-}</style>
+}
+
+</style>
