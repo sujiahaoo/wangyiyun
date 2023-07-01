@@ -170,17 +170,17 @@
           </div>
         </div>
 
-        <van-popup closeable v-model="show" position="bottom" :style="{ height: '20%', borderRadius: '10px 10px 0 0' }">
+        <van-popup class="dark:bg-gray-700 dark:text-white " closeable v-model="show" position="bottom" :style="{ height: '20%', borderRadius: '10px 10px 0 0' }">
           <p class="ml-4 mt-5 w-[90vw] h-[8vw] border-b-2 border-[#000]">推荐歌单</p>
           <p class="flex font-[5vw] mt-[3vw] items-center ">
-            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="mdi:like" /><b class="ml-[5vw]">优点推荐</b>
+            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="mdi:like" /><b class="ml-[5vw] text-[5vw]">优点推荐</b>
           </p>
           <p class="flex font-[5vw] items-center">
-            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="ph:prohibit-bold" /><b class="ml-[5vw]">减少推荐</b>
+            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="ph:prohibit-bold" /><b class="ml-[5vw] text-[5vw]">减少推荐</b>
           </p>
 
           <p class="flex text-[5vw] items-center">
-            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="material-symbols:refresh" /><b class="ml-[5vw]">刷新</b>
+            <Icon class="ml-[3vw] w-[4vw] h-[4vw]" icon="material-symbols:refresh" /><b class="ml-[5vw] text-[5vw]">刷新</b>
           </p>
 
         </van-popup>
