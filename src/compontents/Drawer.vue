@@ -4,7 +4,7 @@
       <div
         v-show="visible"
         class="w-[100vw] h-[220px] bg-[#F5F5F5] z-[999] fixed overflow-auto"
-        :style="[drawerContentStyle, { width }]"
+        :style="[drawerContentStyle]"
       >
         <div>
           <slot name="header" >
@@ -45,10 +45,7 @@ export default {
         return ['ttb', 'btt', 'ltr', 'rtl'].includes(direction);
       },
     },
-    width: {
-      type: [Number, String],
-      default: '82vw',
-    },
+  
   },
   // 计算属性
   computed: {
@@ -68,6 +65,7 @@ export default {
       } else if (this.direction === 'ltr') {
         return {
           height: '100vh',
+          width:'80vw',
           left: 0,
           top: 0,
         };

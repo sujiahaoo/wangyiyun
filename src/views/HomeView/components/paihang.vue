@@ -1,6 +1,6 @@
 <template>
     <div>
-  <ul v-for="item in paihang" :key="item.id" class="scroll-item w-[85vw] rounded-xl mr-5 bg-white">
+  <ul v-for="item in paihang" :key="item.id" class="scroll-item w-[85vw] rounded-xl mr-5 bg-[whitesmoke] dark:bg-gray-700">
                       
                       <li class=" w-[89vw] h-[14.17vw] mb-4 flex items-center" >
                           <div class="font-[700] flex items-center ">
@@ -17,7 +17,7 @@
                               </p>
                           
                               <div class="font-[100] overflow-hidden w-[30vw]">
-                                  <p class="text-xl text-[#000] ">{{ item2.uiElement.mainTitle.title }}</p>
+                                  <p class="text-xl text-[#000] dark:text-[white]">{{ item2.uiElement.mainTitle.title }}</p>
                                   <p class="text-[13px] text-[#666]">{{item2.resourceExtInfo?.artists[0].name}}</p>
 
                               </div>

@@ -1,16 +1,16 @@
 <template>
   <div :class="{ dark: switchCheckout }">
     
-      <div class="w-screen bg-gradient-to-r bg-white  text-[#000] dark:bg-gray-900 dark:text-[#666]">
+      <div class="w-screen bg-white  text-[#000] dark:bg-gray-900 dark:text-[white]">
         <!-- 头部 -->
         <!-- {{  switchCheckout}} -->
 
 
-        <div class="h-[12vw] pt-5 flex w relative text-xs:10px">
+        <div class="h-[12vw] pt-5 flex w relative text-xs:10px ">
           <Icon @click.native="drawerVisible = !drawerVisible" @自定义事件="(e) => (drawerVisible = e)" icon="basil:menu-solid"
             class="w-[4vw] h-[8vw] mr-4 " />
-          <input type="text" class="inp w-[70vw] h-[8vw] pl-[6vw] rounded-3xl">
-          <Icon icon="circum:search" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[9vw]" />
+          <input type="text" class="border-2 border-#fff w-[70vw] h-[8vw] pl-[6vw] rounded-3xl ">
+          <Icon icon="circum:search" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[9vw] " />
           <Icon icon="ph:scan-duotone" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[70vw]" />
           <Icon icon="tabler:microphone" color="#3b445b" class="w-[4vw] h-[8vw] ml-5" />
 
@@ -36,7 +36,7 @@
         <div class="w-sreen h-[46vw] text-xs mt-4 overflow-hidden">
           <div class="w-[95vw] h-[6vw] flex now mx-auto">
             <p class="flex ml-[5vw]">推荐歌单
-              <icon class="mt-0" icon="ep:arrow-right-bold" color="black" width="15" />
+              <icon class="mt-0 dark:text-[white]" icon="ep:arrow-right-bold" color="black" width="15" />
             </p>
             <icon class="ml-[5vw]" icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
           </div>
@@ -49,7 +49,7 @@
          </div>
          </transition>
         </div> -->
-              <div class="w-[28vw] h-[30vw]  mr-[vw] float-left">
+              <div class="w-[28vw] h-[30vw]  mr-[vw] float-left dark:text-[white]">
                 <div class="w-[27vw] h-[27vw] overflow-hidden relative rounded-[3vw]">
                   <div class="absolute top-[2vw] right-[6.5%] font-[800] text-[#fff] flex items-center z-30">
                     <Icon icon="ion:infinite-outline" class="text-[#fff] w-[6vw] h-[6vw]" />
@@ -61,7 +61,7 @@
                   </transition>
                 </div>
                 <p
-                  class="w-[25vw] h-[8vw] text-[10px] text-[#3E4759] scroll-item line-clamp-2 whitespace-normal mt-[-3vw]">
+                  class="w-[25vw] h-[8vw] text-[10px] text-[#3E4759] scroll-item line-clamp-2 whitespace-normal mt-[-3vw] dark:text-[white]">
                   {{ resourceData }}
                 </p>
               </div>
@@ -73,7 +73,7 @@
         </div>
         <!-- 新歌速递 -->
         <!-- <song /> -->
-        <div class=" overflow-hidden h-[74vw] relative mt-[4vw]">
+        <div class=" overflow-hidden h-[74vw] relative mt-[4vw] ">
           <div class="flex justify-between wrapper mb-4 z-999 ">
             <div class="flex items-center  ml-[8vw] ">
               <span class="text-xs">新歌新碟/数字专辑</span>
@@ -89,14 +89,14 @@
 
 
           <div class="scroll-wrapper" ref="song">
-            <div class="scroll-content flex w-[420vw]">
+            <div class="scroll-content flex w-[420vw] ">
               <song :song="song" />
             </div>
           </div>
         </div>
         <!-- 排行榜 -->
         <!-- <paihang :paihang="paihang"/> -->
-        <div class=" overflow-hidden h-[85vw] mt-8">
+        <div class=" overflow-hidden h-[85vw] mt-8 ">
           <div class="flex justify-between wrapper mb-4">
             <div class="flex items-center  ml-[8vw]">
               <span class="text-xs">排行榜</span>
@@ -170,7 +170,6 @@
           </div>
         </div>
 
-        <!-- <van-cell is-link @click="showPopup">展示弹出层</van-cell> -->
         <van-popup closeable v-model="show" position="bottom" :style="{ height: '20%', borderRadius: '10px 10px 0 0' }">
           <p class="ml-4 mt-5 w-[90vw] h-[8vw] border-b-2 border-[#000]">推荐歌单</p>
           <p class="flex font-[5vw] mt-[3vw] items-center ">
@@ -185,6 +184,19 @@
           </p>
 
         </van-popup>
+        <!-- <Drawerome :visible.sync="drawerXian" direction="btt">
+          <p class="ml-4 mt-5 w-[90vw] h-[8vw] border-b-2 border-[#000]">推荐歌单</p>
+          <p class="flex font-[5vw] mt-[3vw] items-center ">
+            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="mdi:like" /><b class="ml-[5vw]">优点推荐</b>
+          </p>
+          <p class="flex font-[5vw] items-center">
+            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="ph:prohibit-bold" /><b class="ml-[5vw]">减少推荐</b>
+          </p>
+
+          <p class="flex text-[5vw] items-center">
+            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="material-symbols:refresh" /><b class="ml-[5vw]">刷新</b>
+          </p>
+        </Drawerome> -->
 
         <Drawer :visible.sync="drawerVisible" direction="ltr">
           <!-- <template #header>
@@ -193,11 +205,10 @@
           <Icon icon="clarity:times-line" />
         </div>
       </template> -->
-          <template>
-            <div>
-
-            </div>
-            <div class="w-[80%] h-[10vw] fixed top-0 flex items-center justify-between bg-white">
+      <div class="text-black bg-white dark:bg-black dark:text-[#fff]">
+        <template>
+           
+            <div class="w-[80%] h-[10vw] fixed top-0 flex items-center justify-between">
               <div class="flex justify-between items-center ">
                 <img class="w-[6.67vw] h-[6.94vw] rounded-[50%] mr-[2.87vw]"
                   src="https://img0.baidu.com/it/u=1204940695,1987188323&fm=253&fmt=auto&app=138&f=JPEG?w=517&h=500"
@@ -226,7 +237,7 @@
             </div>
             <p class="text-[#a08d89]">专享优惠!黑胶VIP仅￥0.26/天!</p>
           </div>
-          <div class="mb-[4.17vw] bg-white rounded-xl px-[4.26vw]">
+          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl px-[4.26vw]">
             <div class="h-[12.69vw] border-b-[1px] border-[#ccc] flex justify-between items-center">
               <div class="flex items-center">
                 <Icon icon="solar:letter-linear" width="15" />
@@ -251,7 +262,7 @@
             </div>
           </div>
           <!-- 音乐服务 -->
-          <div class="mb-[4.17vw] bg-white rounded-xl">
+          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl">
             <div class="h-[10vw] pl-[4.26vw] border-b-[1px] border-[#ccc] text-[#ccc] leading-[10vw]">音乐服务</div>
             <div class="px-[4.26vw]">
               <div class="h-[12.69vw] flex justify-between items-center">
@@ -327,7 +338,7 @@
             </div>
           </div>
           <!-- 其他 -->
-          <div class="mb-[4.17vw] bg-white rounded-xl">
+          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl">
             <div class="h-[10vw] pl-[4.26vw] border-b-[1px] border-[#ccc] text-[#ccc] leading-[10vw]">其他</div>
             <div class="px-[4.26vw]">
               <div class="h-[12.69vw] flex justify-between items-center">
@@ -427,7 +438,7 @@
           </div>
 
 
-          <div class="mb-[4.17vw] bg-white rounded-xl">
+          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl">
             <div class="px-[4.26vw]">
               <div class="h-[12.69vw] flex justify-between items-center">
                 <div class="flex items-center">
@@ -513,7 +524,9 @@
 
 
           </div>
-          <div class="bg-white w-[80vw] text-center  h-[15vw] mb-[5vw] rounded-2xl text-red-600 lh">退出登录</div>
+          <div class="bg-white dark:bg-gray-900 w-[80vw] text-center  h-[15vw] mb-[5vw] rounded-2xl text-red-600 lh">退出登录</div>
+      </div>
+         
         </Drawer>
       </div>
     </div>
@@ -530,6 +543,7 @@ export default {
     return {
       switchCheckout: false,
       drawerVisible: false,
+      drawerXian:false,
       visible: 0,
       banners: [],
       songdan: [],
@@ -553,7 +567,8 @@ export default {
     paihang: () => import('./HomeView/components/paihang.vue'),
     day: () => import('./HomeView/components/rili.vue'),
     Drawer: () => import('../compontents/Drawer.vue'),
-    VanSwitch: () => import('../compontents/Drawer.vue')
+    VanSwitch: () => import('../compontents/Drawer.vue'),
+    Drawerome: () => import('../compontents/Drawer2.vue'),
 
 
   },
@@ -580,6 +595,7 @@ export default {
         probeType: 4 // listening scroll event
       })
     },
+  
     showPopup() {
       this.show = true;
     },

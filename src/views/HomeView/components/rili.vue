@@ -1,5 +1,5 @@
 <template>
-      <ul class="w-[85vw] h-[50vw] bg-white mx-auto mt-3 rounded-2xl">
+      <ul class="w-[85vw] h-[50vw] bg-[whitesmoke] mx-auto mt-3 rounded-2xl dark:bg-gray-700">
    
         <li v-for="item in day" :key="item" class="flex items-center mt-[3vw]  ml-[5vw] float-left w-[78vw] h-[20vw] justify-between
                 ">

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative dark:text-[white]">
     <div class="scroll-item ml-[-4vw] text-center " v-for="item in menus" :key="item"> <img :src="item.iconUrl" class="w-[18vw] h-[17vw] red-image">
       <p class="text-xs text-#aaa mt-[-1vw]">{{item.name }}</p>
         </div>
