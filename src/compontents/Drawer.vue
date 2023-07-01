@@ -96,7 +96,7 @@ export default {
 /* .btt-enter,
 .btt-leave-to, */
 
-.ltr-enter,.ltr-leave-to{
+  .ltr-enter,.ltr-leave-to{
         transform: translateX(-100%);
     }
     .ltr-enter-active,.ltr-leave-active {

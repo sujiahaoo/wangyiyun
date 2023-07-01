@@ -208,7 +208,7 @@
       <div class="text-black bg-white dark:bg-black dark:text-[#fff]">
         <template>
            
-            <div class="w-[80%] h-[10vw] fixed top-0 flex items-center justify-between">
+            <div class="w-[80%] h-[10vw] fixed top-0 flex items-center justify-between bg-white dark:bg-black">
               <div class="flex justify-between items-center ">
                 <img class="w-[6.67vw] h-[6.94vw] rounded-[50%] mr-[2.87vw]"
                   src="https://img0.baidu.com/it/u=1204940695,1987188323&fm=253&fmt=auto&app=138&f=JPEG?w=517&h=500"
