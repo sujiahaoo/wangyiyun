@@ -555,7 +555,7 @@ export default {
       day: [],
       lunbo: [],
       show: false,
-      resourceData: '',
+      resourceData:'网易云音乐真好',
     }
   },
   components: {
