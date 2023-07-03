@@ -1,12 +1,18 @@
 import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
-import indexView from './views/index.vue';
+import indexView from '@/app.vue';
 import Switch from './compontents/Switch.vue';
+import router from './router';
+
 Vue.component('V-Switch', Switch);
+
 
 Vue.component('Icon', Icon);
 
+import IndexView from '@/views/IndexView.vue';
+import MineView from '@/views/MineView.vue';
+Vue.component('MineView', MineView);
 import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
@@ -18,6 +24,7 @@ Vue.use(Popup);
 // vue中this的指向问题：methods中的所有函数（不要箭头函数）的this指向vm（vue的实例）
 const vm = new Vue({
   el: '#app',
+  router,
  render:h=>h(indexView),
 
 });

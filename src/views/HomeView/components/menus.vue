@@ -3,7 +3,7 @@
     <div class="scroll-item ml-[-4vw] text-center " v-for="item in menus" :key="item"> <img :src="item.iconUrl" class="w-[18vw] h-[17vw] red-image">
       <p class="text-xs text-#aaa mt-[-1vw]">{{item.name }}</p>
         </div>
-       <p class="absolute text-[#fff] top-[6vw] left-[5vw]">{{ new Date().getDate() }}</p> 
+       <p class="absolute text-[#fff] top-[6vw] left-[6vw]">{{ new Date().getDate() }}</p> 
   </div>
 </template>
 <script>

@@ -5,3 +5,8 @@ const http = axios.create({
 });
 export const fetchBlockPage = () => http.get('/homepage/block/page');
 export const fetchPersonalized = () => http.get('/personalized?limit=6');
+export async function fetchToplisDetail(){
+  const res = await http.get('/toplist/detail');
+  const playlist = await Promise.all(res.data.list.map(({id}) => http.get('/playlist/detail', {params: {id}})));
+  console.log(playlist.map(item => item.data.playlist));
+}

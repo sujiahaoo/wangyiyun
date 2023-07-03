@@ -6,10 +6,14 @@
         <!-- {{  switchCheckout}} -->
 
 
-        <div class="h-[12vw] pt-5 flex w relative text-xs:10px ">
+        <div class="h-[12vw] pt-5 flex w-[88vw] mx-auto relative text-xs:10px ">
           <Icon @click.native="drawerVisible = !drawerVisible" @自定义事件="(e) => (drawerVisible = e)" icon="basil:menu-solid"
             class="w-[4vw] h-[8vw] mr-4 " />
-          <input type="text" class="border-2 border-#fff w-[70vw] h-[8vw] pl-[6vw] rounded-3xl ">
+    <router-link :to="{path:'/MineView'}">
+      <input type="text" class="border-2 border-#fff w-[70vw] h-[8vw] pl-[6vw] rounded-3xl ">
+    </router-link>
+
+          
           <Icon icon="circum:search" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[9vw] " />
           <Icon icon="ph:scan-duotone" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[70vw]" />
           <Icon icon="tabler:microphone" color="#3b445b" class="w-[4vw] h-[8vw] ml-5" />
@@ -33,12 +37,12 @@
           </div>
         </div>
         <!-- 歌单 -->
-        <div class="w-sreen h-[46vw] text-xs mt-4 overflow-hidden">
+        <div class="w-sreen h-[46vw] mx-auto text-xs mt-4 overflow-hidden">
           <div class="w-[95vw] h-[6vw] flex now mx-auto">
-            <p class="flex ml-[5vw]">推荐歌单
-              <icon class="mt-0 dark:text-[white]" icon="ep:arrow-right-bold" color="black" width="15" />
+            <p class="flex ml-[5vw]"><b class="text-[4.5vw]">推荐歌单</b> 
+              <icon class="mt-0 "  icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
             </p>
-            <icon class="ml-[5vw]" icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
+            <icon class="ml-[5vw]" icon="ri:more-2-fill" color="black dark:text-white" width="15" @click.native="showPopup" />
           </div>
           <div class="scroll-wrapper" ref="menus">
             <div class="scroll-content flex w-[170vw] float-left">
@@ -49,14 +53,14 @@
          </div>
          </transition>
         </div> -->
-              <div class="w-[28vw] h-[30vw]  mr-[vw] float-left dark:text-[white]">
+              <div class="w-[27vw] h-[30vw]  mr-[-1vw] float-left dark:text-[white]">
                 <div class="w-[27vw] h-[27vw] overflow-hidden relative rounded-[3vw]">
                   <div class="absolute top-[2vw] right-[6.5%] font-[800] text-[#fff] flex items-center z-30">
-                    <Icon icon="ion:infinite-outline" class="text-[#fff] w-[6vw] h-[6vw]" />
+                    <Icon icon="ion:infinite-outline" color="text-[white]" class="w-[6vw] h-[6vw]" />
                   </div>
                   <transition class="relative" name="abc" v-for="(item, index) in lunbo" :key="item.id">
                     <div v-if="visible === index" class="absolute top-0 left-0&quot; ">
-                      <img :src="item.uiElement.image.imageUrl" alt="" class="w-[25vw] h-[25vw] rounded-[3vw]" />
+                      <img :src="item.uiElement.image.imageUrl" alt="" class="w-[25vw] h-[25vw] rounded-2xl" />
                     </div>
                   </transition>
                 </div>
@@ -76,14 +80,14 @@
         <div class=" overflow-hidden h-[74vw] relative mt-[4vw] ">
           <div class="flex justify-between wrapper mb-4 z-999 ">
             <div class="flex items-center  ml-[8vw] ">
-              <span class="text-xs">新歌新碟/数字专辑</span>
-              <icon icon="ep:arrow-right-bold" color="black" width="15" />
+              <b class="text-[4.5vw]">新歌新碟/数字专辑</b> 
+              <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
 
             </div>
 
           </div>
           <span class="absolute left-[96vw] top-[-1vw]">
-            <icon class="mt-1" icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
+            <icon class="mt-1" icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
 
           </span>
 
@@ -97,12 +101,14 @@
         <!-- 排行榜 -->
         <!-- <paihang :paihang="paihang"/> -->
         <div class=" overflow-hidden h-[85vw] mt-8 ">
-          <div class="flex justify-between wrapper mb-4">
+          <div class="flex justify-between wrapper mb-3">
             <div class="flex items-center  ml-[8vw]">
-              <span class="text-xs">排行榜</span>
-              <icon icon="ep:arrow-right-bold" color="black" width="15" />
+        
+              <b class="text-[4.5vw]">排行榜</b> 
+
+              <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
             </div>
-            <icon icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
+            <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
           </div>
           <div class="scroll-wrapper" ref="song2">
 
@@ -113,16 +119,17 @@
         </div>
 
         <!-- 日历 -->
-        <div class="w-90vw h-[59vw] mx-auto">
-          <div class="flex justify-between items-center"><b class="ml-[8vw]">音乐日历</b>
-            <icon icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
+        <div class="w-90vw h-[59vw] mx-auto mt-[5vw]">
+          <div class="flex justify-between items-center"><b class="ml-[8vw] flex items-center text-[4.5vw]">音乐日历 <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" /></b>
+            <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
           </div>
           <day :day="day" />
         </div>
-        <div class="mt-5 border-b pb-4 border-gray-300 font-[3vw]">
-          <div class="flex justify-between wrapper mb-4">
-            <span class="font-[700] text-[18px] ml-[5vw]">热门话题</span>
-            <icon icon="ri:more-2-fill" color="black" width="15" @click.native="showPopup" />
+        <!-- 热门话题 -->
+        <div class="mt-[8vw] border-b pb-2 border-gray-300 font-[3vw]">
+          <div class="flex justify-between wrapper">
+            <span class="font-[700] text-[4.5vw] ml-[7vw] flex items-center">热门话题  <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" /></span>
+            <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
           </div>
           <div class="scroll-wrapper overflow-hidden" ref="scrollsong">
             <ul class="scroll-content flex w-[185vw]">
@@ -205,7 +212,7 @@
           <Icon icon="clarity:times-line" />
         </div>
       </template> -->
-      <div class="text-black bg-white dark:bg-black dark:text-[#fff]">
+      <div class="text-black bg-[#f5f5f5] dark:bg-black dark:text-[#fff]">
         <template>
            
             <div class="w-[80%] h-[10vw] fixed top-0 flex items-center justify-between bg-white dark:bg-black">
@@ -213,19 +220,19 @@
                 <img class="w-[6.67vw] h-[6.94vw] rounded-[50%] mr-[2.87vw]"
                   src="https://img0.baidu.com/it/u=1204940695,1987188323&fm=253&fmt=auto&app=138&f=JPEG?w=517&h=500"
                   alt="">
-                <div class="flex items-center">
+                <div class="flex items-center ml-[2vw]">
                   <span>iKun</span>
-                  <icon icon="ep:arrow-right-bold" color="black" width="15" />
+                  <icon icon="ep:arrow-right-bold" color="black dark:text-white" width="15" class=""/>
                 </div>
               </div>
-              <icon icon="lucide:scan-line" color="#000" width="20" />
+              <icon icon="lucide:scan-line" color="#000 dark:text-white" width="20" />
             </div>
           </template>
           <div class="w-[100%] h-[8vw]"></div>
 
           <!-- 黑胶 -->
           <div
-            class="w-[75.74vw] h-[28.06vw] pt-[3.24vw] px-[4.17vw] pb-[2.87vw] mt-[5.65vw] mb-[4.17vw] flex flex-col justify-between text-[3vw] bg-gradient-to-r from-[#3b3937] to-[#5b504c] rounded-2xl">
+            class="w-[75.74vw] h-[28.06vw] ml-[2vw] pt-[3.24vw] px-[4.17vw] pb-[2.87vw] mt-[5.65vw] mb-[4.17vw] flex flex-col justify-between text-[3vw] bg-gradient-to-r from-[#3b3937] to-[#5b504c] rounded-2xl">
             <div class="flex justify-between items-center">
               <div>
                 <p class="text-[3.89vw] text-[#fce3e1]">开通黑胶VIP</p>
@@ -237,7 +244,7 @@
             </div>
             <p class="text-[#a08d89]">专享优惠!黑胶VIP仅￥0.26/天!</p>
           </div>
-          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl px-[4.26vw]">
+          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl px-[4.26vw] w-[75vw] ml-[2vw]">
             <div class="h-[12.69vw] border-b-[1px] border-[#ccc] flex justify-between items-center">
               <div class="flex items-center">
                 <Icon icon="solar:letter-linear" width="15" />
@@ -262,7 +269,7 @@
             </div>
           </div>
           <!-- 音乐服务 -->
-          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl">
+          <div class="mb-[4.17vw] w-[75vw] ml-[2vw] bg-white dark:bg-gray-900 rounded-xl">
             <div class="h-[10vw] pl-[4.26vw] border-b-[1px] border-[#ccc] text-[#ccc] leading-[10vw]">音乐服务</div>
             <div class="px-[4.26vw]">
               <div class="h-[12.69vw] flex justify-between items-center">
@@ -338,7 +345,7 @@
             </div>
           </div>
           <!-- 其他 -->
-          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl">
+          <div class="mb-[4.17vw] w-[75vw] ml-[2vw] bg-white dark:bg-gray-900 rounded-xl">
             <div class="h-[10vw] pl-[4.26vw] border-b-[1px] border-[#ccc] text-[#ccc] leading-[10vw]">其他</div>
             <div class="px-[4.26vw]">
               <div class="h-[12.69vw] flex justify-between items-center">
@@ -438,7 +445,7 @@
           </div>
 
 
-          <div class="mb-[4.17vw] bg-white dark:bg-gray-900 rounded-xl">
+          <div class="mb-[4.17vw] w-[75vw] ml-[2vw] bg-white dark:bg-gray-900 rounded-xl">
             <div class="px-[4.26vw]">
               <div class="h-[12.69vw] flex justify-between items-center">
                 <div class="flex items-center">
@@ -524,7 +531,7 @@
 
 
           </div>
-          <div class="bg-white dark:bg-gray-900 w-[80vw] text-center  h-[15vw] mb-[5vw] rounded-2xl text-red-600 lh">退出登录</div>
+          <div class="bg-white w-[75vw] ml-[2vw] dark:bg-gray-900 w-[80vw] text-center  h-[15vw] mb-[5vw] rounded-2xl text-red-600 lh">退出登录</div>
       </div>
          
         </Drawer>
@@ -568,7 +575,7 @@ export default {
     day: () => import('./HomeView/components/rili.vue'),
     Drawer: () => import('../compontents/Drawer.vue'),
     VanSwitch: () => import('../compontents/Drawer.vue'),
-    Drawerome: () => import('../compontents/Drawer2.vue'),
+ 
 
 
   },
@@ -672,7 +679,7 @@ export default {
 
 <style>
 .w {
-  width: 88vw;
+  width: 100vw;
   margin: 0 auto;
 }
 
