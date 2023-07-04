@@ -9,7 +9,7 @@
                           </div>
                           <p class="ml-10 text-xs">{{ item.mainTitle?.titleDesc }}</p>
                       </li>
-                      <li class="w-[85vw] h-[14.17vw] mb-4 flex justify-between relative" v-for="(item2,index) in item.resources" :key="item2.id">
+                      <li class="w-[85vw] h-[14.17vw] mb-4 flex justify-between relative items-center" v-for="(item2,index) in item.resources" :key="item2.id">
                           <img :src="item2.uiElement.image.imageUrl" alt="" class="w-[14.17vw] h-[14.17vw] rounded-xl">
                           <div class="flex absolute left-[14vw] top-[3vw] justify-start test-xs mr-[20vw] items-center text-left overflow-hidden">
                               <p class="ml-4 mr-5"> 
@@ -21,8 +21,12 @@
                                   <p class="text-[13px] text-[#666]">{{item2.resourceExtInfo?.artists[0].name}}</p>
 
                               </div>
+
                           </div>
-                          <p class="text-xs">{{ item.uiElement.labelText?.text }}</p>
+                          <p v-if="item2.uiElement.labelText?.text==='热门'" class="text-[red] text-xs mr-[8vw]">{{item2.uiElement.labelText?.text}}</p>
+                          <p v-else-if="item2.uiElement.labelText?.text==='新晋'" class="text-[green] text-xs mr-[8vw]">{{item2.uiElement.labelText?.text}}</p>
+
+
                       </li>
                   </ul>
                 </div>

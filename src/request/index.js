@@ -10,3 +10,11 @@ export async function fetchToplisDetail(){
   const playlist = await Promise.all(res.data.list.map(({id}) => http.get('/playlist/detail', {params: {id}})));
   console.log(playlist.map(item => item.data.playlist));
 }
+export const fetchSearchDefault = () => http.get('/search/default');
+
+export const fetchSearchResult = (params) => http.get('/search', { params });
+
+export const fetchSearchSuggest = (keywords) =>
+  http.get('/search/suggest', { params: { keywords } });
+
+export const fetchHomeData = () => http.get('/homepage/block/page');

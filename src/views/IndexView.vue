@@ -1,197 +1,204 @@
 <template>
   <div :class="{ dark: switchCheckout }">
-    
-      <div class="w-screen bg-white  text-[#000] dark:bg-gray-900 dark:text-[white]">
-        <!-- 头部 -->
-        <!-- {{  switchCheckout}} -->
+
+    <div class="w-screen h-[100vh] bg-white  text-[#000] dark:bg-gray-900 dark:text-[white] "
+      :class='switchCheckStatus ? "overflow-auto" : "overflow-hidden"'>
+      <!-- 头部 -->
+      <!-- {{  switchCheckout}} -->
 
 
-        <div class="h-[12vw] pt-5 flex w-[88vw] mx-auto relative text-xs:10px ">
-          <Icon @click.native="drawerVisible = !drawerVisible" @自定义事件="(e) => (drawerVisible = e)" icon="basil:menu-solid"
-            class="w-[4vw] h-[8vw] mr-4 " />
-    <router-link :to="{path:'/MineView'}">
-      <input type="text" class="border-2 border-#fff w-[70vw] h-[8vw] pl-[6vw] rounded-3xl ">
-    </router-link>
-
-          
-          <Icon icon="circum:search" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[9vw] " />
-          <Icon icon="ph:scan-duotone" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[70vw]" />
-          <Icon icon="tabler:microphone" color="#3b445b" class="w-[4vw] h-[8vw] ml-5" />
+      <div class="h-[14vw] pt-5 flex w-[100vw] mx-auto text-xs:10px fixed top-0  bg-white z-40 dark:bg-black">
+        <Icon @click.native="drawerVisible = !drawerVisible" @自定义事件="(e) => (drawerVisible = e)" icon="basil:menu-solid"
+          class="w-[4vw] h-[8vw] mr-4 ml-[7vw]" />
+        <router-link :to="{ path: '/MineView' }">
+          <input type="text" class="border-2 border-#fff w-[70vw] h-[8vw] pl-[6vw] rounded-3xl " placeholder="赵雷">
+        </router-link>
 
 
+        <Icon icon="circum:search" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[17vw] " />
+        <Icon icon="ph:scan-duotone" color="#78758b" class="w-[4vw] h-[8vw] absolute left-[77vw]" />
+        <Icon icon="tabler:microphone" color="#3b445b" class="w-[4vw] h-[8vw] ml-5" />
 
-        </div>
 
-        <!-- 轮播 -->
 
-        <banners :banners="banners" />
-        <!-- 菜单 -->
+      </div>
 
-        <div class=" overflow-hidden h-[23vw]">
+      <!-- 轮播 -->
 
-          <div class="scroll-wrapper" ref="scroll">
-            <div class="scroll-content flex w-[185vw]">
-              <menus :menus="menus"></menus>
+      <banners :banners="banners" />
+      <!-- 菜单 -->
 
-            </div>
+      <div class=" overflow-hidden h-[23vw]">
+
+        <div class="scroll-wrapper" ref="scroll">
+          <div class="scroll-content flex w-[185vw]">
+            <menus :menus="menus"></menus>
+
           </div>
         </div>
-        <!-- 歌单 -->
-        <div class="w-sreen h-[46vw] mx-auto text-xs mt-4 overflow-hidden">
-          <div class="w-[95vw] h-[6vw] flex now mx-auto">
-            <p class="flex ml-[5vw]"><b class="text-[4.5vw]">推荐歌单</b> 
-              <icon class="mt-0 "  icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
-            </p>
-            <icon class="ml-[5vw]" icon="ri:more-2-fill" color="black dark:text-white" width="15" @click.native="showPopup" />
-          </div>
-          <div class="scroll-wrapper" ref="menus">
-            <div class="scroll-content flex w-[170vw] float-left">
-              <!-- <div class="w-[28vw] h-[28vw] float-left">
+      </div>
+      <!-- 歌单 -->
+      <div class="w-sreen h-[46vw] mx-auto text-xs mt-4 overflow-hidden">
+        <div class="w-[99vw] h-[6vw] flex now mx-auto">
+          <p class="flex ml-[5vw]"><b class="text-[4.5vw]">推荐歌单</b>
+            <icon class="mt-0 " icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
+          </p>
+          <icon class="ml-[5vw]" icon="ri:more-2-fill" color="black dark:text-white" width="15"
+            @click.native="showPopup" />
+        </div>
+        <div class="scroll-wrapper" ref="menus">
+          <div class="scroll-content flex w-[170vw] float-left">
+            <!-- <div class="w-[28vw] h-[28vw] float-left">
           <transition name="abc" v-for="(item) in lunbo" :key="item">
             <div v-if="visible" class="absolute top-0 left-0">
             <img :src="item.uiElement.image.imageUrl" class="w-[25vw] h-[25vw]" alt="">
          </div>
          </transition>
         </div> -->
-              <div class="w-[27vw] h-[30vw]  mr-[-1vw] float-left dark:text-[white]">
-                <div class="w-[27vw] h-[27vw] overflow-hidden relative rounded-[3vw]">
-                  <div class="absolute top-[2vw] right-[6.5%] font-[800] text-[#fff] flex items-center z-30">
-                    <Icon icon="ion:infinite-outline" color="text-[white]" class="w-[6vw] h-[6vw]" />
-                  </div>
-                  <transition class="relative" name="abc" v-for="(item, index) in lunbo" :key="item.id">
-                    <div v-if="visible === index" class="absolute top-0 left-0&quot; ">
-                      <img :src="item.uiElement.image.imageUrl" alt="" class="w-[25vw] h-[25vw] rounded-2xl" />
-                    </div>
-                  </transition>
+            <div class="w-[27vw] h-[30vw]  mr-[-1vw] float-left dark:text-[white]">
+              <div class="w-[27vw] h-[27vw] overflow-hidden relative rounded-[3vw]">
+                <div class="absolute top-[2vw] right-[6.5%] font-[800] text-[#fff] flex items-center z-30">
+                  <Icon icon="ion:infinite-outline" color="text-[white]" class="w-[6vw] h-[6vw]" />
                 </div>
-                <p
-                  class="w-[25vw] h-[8vw] text-[10px] text-[#3E4759] scroll-item line-clamp-2 whitespace-normal mt-[-3vw] dark:text-[white]">
-                  {{ resourceData }}
-                </p>
+                <transition class="relative" name="abc" v-for="(item, index) in lunbo" :key="item.id">
+                  <div v-if="visible === index" class="absolute top-0 left-0&quot; ">
+                    <img :src="item.uiElement.image.imageUrl" alt="" class="w-[25vw] h-[25vw] rounded-2xl" />
+                  </div>
+                </transition>
               </div>
-
-              <songdan :songdan="songdan"></songdan>
-
+              <p
+                class="w-[25vw] h-[8vw] text-[10px] text-[#3E4759] scroll-item line-clamp-2 whitespace-normal mt-[-3vw] dark:text-[white]">
+                {{ resourceData }}
+              </p>
             </div>
+
+            <songdan :songdan="songdan"></songdan>
+
           </div>
         </div>
-        <!-- 新歌速递 -->
-        <!-- <song /> -->
-        <div class=" overflow-hidden h-[74vw] relative mt-[4vw] ">
-          <div class="flex justify-between wrapper mb-4 z-999 ">
-            <div class="flex items-center  ml-[8vw] ">
-              <b class="text-[4.5vw]">新歌新碟/数字专辑</b> 
-              <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
-
-            </div>
+      </div>
+      <!-- 新歌速递 -->
+      <!-- <song /> -->
+      <div class=" overflow-hidden h-[74vw] relative mt-[4vw] ">
+        <div class="flex justify-between wrapper mb-4 z-999 ">
+          <div class="flex items-center  ml-[8vw] ">
+            <b class="text-[4.5vw]">新歌新碟/数字专辑</b>
+            <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
 
           </div>
-          <span class="absolute left-[96vw] top-[-1vw]">
-            <icon class="mt-1" icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
 
+        </div>
+        <span class="absolute left-[96vw] top-[-1vw]">
+          <icon class="mt-1" icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
+
+        </span>
+
+
+        <div class="scroll-wrapper" ref="song">
+          <div class="scroll-content flex w-[420vw] ">
+            <song :song="song" />
+          </div>
+        </div>
+      </div>
+      <!-- 排行榜 -->
+      <!-- <paihang :paihang="paihang"/> -->
+      <div class=" overflow-hidden h-[85vw] mt-8 ">
+        <div class="flex justify-between wrapper mb-3">
+          <div class="flex items-center  ml-[8vw]">
+
+            <b class="text-[4.5vw]">排行榜</b>
+
+            <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
+          </div>
+          <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
+        </div>
+        <div class="scroll-wrapper" ref="song2">
+
+          <div class="scroll-content flex w-[325vw]">
+            <paihang :paihang="paihang" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 日历 -->
+      <div class="w-90vw h-[59vw] mx-auto mt-[5vw]">
+        <div class="flex justify-between items-center"><b class="ml-[8vw] flex items-center text-[4.5vw]">音乐日历
+            <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
+          </b>
+          <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
+        </div>
+        <day :day="day" />
+      </div>
+      <!-- 热门话题 -->
+      <div class="mt-[8vw] border-b pb-2 border-gray-300 font-[3vw]">
+        <div class="flex justify-between wrapper">
+          <span class="font-[700] text-[4.5vw] ml-[7vw] flex items-center">热门话题
+            <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
           </span>
-
-
-          <div class="scroll-wrapper" ref="song">
-            <div class="scroll-content flex w-[420vw] ">
-              <song :song="song" />
-            </div>
-          </div>
+          <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
         </div>
-        <!-- 排行榜 -->
-        <!-- <paihang :paihang="paihang"/> -->
-        <div class=" overflow-hidden h-[85vw] mt-8 ">
-          <div class="flex justify-between wrapper mb-3">
-            <div class="flex items-center  ml-[8vw]">
-        
-              <b class="text-[4.5vw]">排行榜</b> 
-
-              <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" />
-            </div>
-            <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
-          </div>
-          <div class="scroll-wrapper" ref="song2">
-
-            <div class="scroll-content flex w-[325vw]">
-              <paihang :paihang="paihang" />
-            </div>
-          </div>
-        </div>
-
-        <!-- 日历 -->
-        <div class="w-90vw h-[59vw] mx-auto mt-[5vw]">
-          <div class="flex justify-between items-center"><b class="ml-[8vw] flex items-center text-[4.5vw]">音乐日历 <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" /></b>
-            <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
-          </div>
-          <day :day="day" />
-        </div>
-        <!-- 热门话题 -->
-        <div class="mt-[8vw] border-b pb-2 border-gray-300 font-[3vw]">
-          <div class="flex justify-between wrapper">
-            <span class="font-[700] text-[4.5vw] ml-[7vw] flex items-center">热门话题  <icon icon="ep:arrow-right-bold" color="black dark:text-[white]" width="15" /></span>
-            <icon icon="ri:more-2-fill" color="black dark:text-[white]" width="15" @click.native="showPopup" />
-          </div>
-          <div class="scroll-wrapper overflow-hidden" ref="scrollsong">
-            <ul class="scroll-content flex w-[185vw]">
-              <li
-                class="scroll-item w-[90vw] h-[35.44vw] mr-3 p-3 flex flex-col justify-around box-border rounded-2xl bg-gradient-to-b from-[#a0a07d] to-[#b3b599]">
+        <div class="scroll-wrapper overflow-hidden" ref="scrollsong">
+          <ul class="scroll-content flex w-[185vw]">
+            <li
+              class="scroll-item w-[90vw] h-[35.44vw] mr-3 p-3 flex flex-col justify-around box-border rounded-2xl bg-gradient-to-b from-[#a0a07d] to-[#b3b599]">
+              <div>
+                <p class="flex items-center w-[47vw] mb-[1vw]">
+                  <Icon icon="solar:chat-round-like-linear" width="20" color="white" />
+                  <span class="text-[#fff]  ml-[1.3vw]">最令你感动的那首歌</span>
+                </p>
+                <p class="text-[#c9c9c9] text-[13px]">484万热度</p>
+              </div>
+              <div class="flex justify-between w-[100%]">
+                <div class="flex flex-col justify-end">
+                  <p class="text-[#ececec]">Saint_Denis:今日份的感动</p>
+                  <p class="text-[#ececec]">"我希望我们能永远真诚且热烈"</p>
+                </div>
                 <div>
-                  <p class="flex items-center w-[47vw] mb-[1vw]">
-                    <Icon icon="solar:chat-round-like-linear" width="20" color="white" />
-                    <span class="text-[#fff]  ml-[1.3vw]">最令你感动的那首歌</span>
-                  </p>
-                  <p class="text-[#c9c9c9] text-[13px]">484万热度</p>
+                  <img src="http://p1.music.126.net/JtMBJSd2ZFtarcVTAYjUFQ==/109951165550061432.jpg" alt=""
+                    class="w-[14vw] h-[14vw] rounded-xl ml-[5vw]">
                 </div>
-                <div class="flex justify-between w-[100%]">
-                  <div class="flex flex-col justify-end">
-                    <p class="text-[#ececec]">Saint_Denis:今日份的感动</p>
-                    <p class="text-[#ececec]">"我希望我们能永远真诚且热烈"</p>
-                  </div>
-                  <div>
-                    <img src="http://p1.music.126.net/JtMBJSd2ZFtarcVTAYjUFQ==/109951165550061432.jpg" alt=""
-                      class="w-[14vw] h-[14vw] rounded-xl ml-[5vw]">
-                  </div>
-                </div>
-              </li>
-              <li
-                class="scroll-item w-[90vw] h-[35.44vw] mr-3 p-3 flex flex-col justify-around  box-border rounded-2xl bg-gradient-to-b from-[#937ea2] to-[#aa95b9]">
+              </div>
+            </li>
+            <li
+              class="scroll-item w-[90vw] h-[35.44vw] mr-3 p-3 flex flex-col justify-around  box-border rounded-2xl bg-gradient-to-b from-[#937ea2] to-[#aa95b9]">
+              <div>
+                <p class="flex items-center w-[47vw] mb-[1vw]">
+                  <Icon icon="solar:chat-round-like-linear" width="20" color="white" />
+                  <span class="text-[#fff]  ml-[1.3vw]">最令你感动的那首歌</span>
+                </p>
+                <p class="text-[#c9c9c9] text-[13px]">22万热度</p>
+              </div>
+              <div class="flex justify-between w-[100%]">
                 <div>
-                  <p class="flex items-center w-[47vw] mb-[1vw]">
-                    <Icon icon="solar:chat-round-like-linear" width="20" color="white" />
-                    <span class="text-[#fff]  ml-[1.3vw]">最令你感动的那首歌</span>
-                  </p>
-                  <p class="text-[#c9c9c9] text-[13px]">22万热度</p>
+                  <p class="text-[#ececec]">辣目小霏:今日份的感动</p>
+                  <p class="text-[#ececec]">you by chance.</p>
                 </div>
-                <div class="flex justify-between w-[100%]">
-                  <div>
-                    <p class="text-[#ececec]">辣目小霏:今日份的感动</p>
-                    <p class="text-[#ececec]">you by chance.</p>
-                  </div>
-                  <div>
-                    <img src="http://p1.music.126.net/JtMBJSd2ZFtarcVTAYjUFQ==/109951165550061432.jpg" alt=""
-                      class="w-[14vw] h-[14vw] rounded-xl">
-                  </div>
+                <div>
+                  <img src="http://p1.music.126.net/JtMBJSd2ZFtarcVTAYjUFQ==/109951165550061432.jpg" alt=""
+                    class="w-[14vw] h-[14vw] rounded-xl">
                 </div>
-              </li>
-            </ul>
-          </div>
+              </div>
+            </li>
+          </ul>
         </div>
+      </div>
 
-        <van-popup class="dark:bg-gray-700 dark:text-white " closeable v-model="show" position="bottom" :style="{ height: '20%', borderRadius: '10px 10px 0 0' }">
-          <p class="ml-4 mt-5 w-[90vw] h-[8vw] border-b-2 border-[#000]">推荐歌单</p>
-          <p class="flex font-[5vw] mt-[3vw] items-center ">
-            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="mdi:like" /><b class="ml-[5vw] text-[5vw]">优点推荐</b>
-          </p>
-          <p class="flex font-[5vw] items-center">
-            <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="ph:prohibit-bold" /><b class="ml-[5vw] text-[5vw]">减少推荐</b>
-          </p>
+      <van-popup class="dark:bg-gray-700 dark:text-white " closeable v-model="show" position="bottom"
+        :style="{ height: '20%', borderRadius: '10px 10px 0 0' }">
+        <p class="ml-4 mt-5 w-[90vw] h-[8vw] border-b-2 border-[#000]">推荐歌单</p>
+        <p class="flex font-[5vw] mt-[3vw] items-center ">
+          <Icon class="ml-[5vw] text-[5vw]" icon="mdi:like" /><b class="ml-[5vw] text-[5vw]">优点推荐</b>
+        </p>
+        <p class="flex font-[5vw] items-center mt-[2vw]">
+          <Icon class="ml-[5vw] text-[5vw]" icon="ph:prohibit-bold" /><b class="ml-[5vw] text-[5vw]">减少推荐</b>
+        </p>
 
-          <p class="flex text-[5vw] items-center">
-            <Icon class="ml-[3vw] w-[4vw] h-[4vw]" icon="material-symbols:refresh" /><b class="ml-[5vw] text-[5vw]">刷新</b>
-          </p>
+        <p class="flex text-[5vw] items-center mt-[2vw]">
+          <Icon class="ml-[4vw] text-[6vw]" icon="material-symbols:refresh" /><b class="ml-[5vw] text-[5vw]">刷新</b>
+        </p>
 
-        </van-popup>
-        <!-- <Drawerome :visible.sync="drawerXian" direction="btt">
+      </van-popup>
+      <!-- <Drawerome :visible.sync="drawerXian" direction="btt">
           <p class="ml-4 mt-5 w-[90vw] h-[8vw] border-b-2 border-[#000]">推荐歌单</p>
           <p class="flex font-[5vw] mt-[3vw] items-center ">
             <Icon class="ml-[3vw] w-[3vw] h-[3vw]" icon="mdi:like" /><b class="ml-[5vw]">优点推荐</b>
@@ -212,10 +219,10 @@
           <Icon icon="clarity:times-line" />
         </div>
       </template> -->
-      <div class="text-black bg-[#f5f5f5] dark:bg-black dark:text-[#fff]">
+      <div class="text-black bg-[#f5f5f5] dark:bg-black dark:text-[#fff]" style="width: 80vw;">
         <template>
            
-            <div class="w-[80%] h-[10vw] fixed top-0 flex items-center justify-between bg-white dark:bg-black">
+            <div class="h-[10vw] w-[80vw] fixed top-0 flex items-center justify-between bg-white dark:bg-black">
               <div class="flex justify-between items-center ">
                 <img class="w-[6.67vw] h-[6.94vw] rounded-[50%] mr-[2.87vw]"
                   src="https://img0.baidu.com/it/u=1204940695,1987188323&fm=253&fmt=auto&app=138&f=JPEG?w=517&h=500"
@@ -535,9 +542,8 @@
       </div>
          
         </Drawer>
-      </div>
     </div>
- 
+  </div>
 </template>
 <script>
 
@@ -548,9 +554,10 @@ import BScroll from '@better-scroll/core'
 export default {
   data() {
     return {
+      switchCheckStatus: true,
       switchCheckout: false,
       drawerVisible: false,
-      drawerXian:false,
+      drawerXian: false,
       visible: 0,
       banners: [],
       songdan: [],
@@ -562,7 +569,7 @@ export default {
       day: [],
       lunbo: [],
       show: false,
-      resourceData:'网易云音乐真好',
+      resourceData: '网易云音乐真好',
     }
   },
   components: {
@@ -575,8 +582,6 @@ export default {
     day: () => import('./HomeView/components/rili.vue'),
     Drawer: () => import('../compontents/Drawer.vue'),
     VanSwitch: () => import('../compontents/Drawer.vue'),
- 
-
 
   },
   mounted() {
@@ -587,22 +592,25 @@ export default {
 
     this.init(this.$refs.scroll)
     this.init(this.$refs.scroll1)
-
+    this.init(this.$refs.side)
     this.animateItems();
 
   },
   beforeDestroy() {
     this.bs.destroy()
   },
+
+
   methods: {
     init(name) {
       this.bs = new BScroll(name, {
         scrollX: true,
         scrollY: false,
-        probeType: 4 // listening scroll event
+        probeType: 3,
+        click: true
       })
     },
-  
+
     showPopup() {
       this.show = true;
     },
@@ -635,8 +643,8 @@ export default {
       .get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page')
       .then((res) => {
         //   this.song = res.data.data.blocks[5].creatives;
-        this.paihang = res.data.data.blocks[5].creatives;
-
+        this.paihang = res.data.data.blocks[3].creatives;
+        // console.log(this.paihang);
       })
     axios.get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page')
       .then(res => {
@@ -660,7 +668,7 @@ export default {
         this.songdan = res.data.data.blocks[1].creatives.slice(1);
         this.lunbo = res.data.data.blocks[1].creatives[0].resources;
 
-        console.log(this.lunbo);
+        // console.log(this.lunbo);
       })
       .catch(err => {
         console.log(err);
@@ -727,7 +735,7 @@ img {
 
   border-radius: 5px;
 
-  height: 35vw;
+  /* height: 35vw; */
 }
 
 .scroll-content {
@@ -750,4 +758,5 @@ img {
 
 .lh {
   line-height: 15vw;
-}</style>
+}
+</style>

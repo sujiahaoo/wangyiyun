@@ -65,7 +65,7 @@ export default {
       } else if (this.direction === 'ltr') {
         return {
           height: '100vh',
-          width:'80vw',
+          width:'83vw',
           left: 0,
           top: 0,
         };
