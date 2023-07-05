@@ -18,3 +18,4 @@ export const fetchSearchSuggest = (keywords) =>
   http.get('/search/suggest', { params: { keywords } });
 
 export const fetchHomeData = () => http.get('/homepage/block/page');
+export const songDetails = (params) => http.get(`/playlist/detail?id=${params}`)

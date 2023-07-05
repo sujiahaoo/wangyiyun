@@ -1,37 +1,36 @@
 import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
-import indexView from '@/app.vue';
+import app from '@/app.vue';
 import Switch from './compontents/Switch.vue';
+// import Dialog from './compontents/Dialog';
+// Vue.use(Dialog);
 import router from './router';
-
 Vue.component('V-Switch', Switch);
-
-
 Vue.component('Icon', Icon);
-
-import IndexView from '@/views/IndexView.vue';
-import MineView from '@/views/MineView.vue';
-Vue.component('MineView', MineView);
 import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
 import { Popup } from 'vant';
 Vue.use(Popup);
-// 页面打开请求自动发送
-// 请求回来的数据还要渲染到页面上 （数据驱动视图）
-// 数据驱动视图变化的条件：数据必须是响应式数据（data）+ 数据必须通过模板语法绑定到模板中111
-// vue中this的指向问题：methods中的所有函数（不要箭头函数）的this指向vm（vue的实例）
+// import Vuex from '@/vuex';
+// Vue.use(Vuex)
+// const store=new Vuex.Store({
+//   state:{
+//     count:123,
+//     msg:'hellow,vuex!'
+//   },
+//   mutations:{
+//     increase(state){
+//       state.count++
+//     }
+//   }
+// })
 const vm = new Vue({
   el: '#app',
   router,
- render:h=>h(indexView),
-
+  // store,
+ components: { app },
+ template: '<app/>',
 });
-window.vm = vm;
-console.log(vm);
-// 以_开头的变量名属性名是私有变量或私用属性，不希望其他人去使用
-// 一般情况下：我们在实例化vue传递的配置项 a => $a
-// el => $el
-// data => $data
-// afterInit ==> created
+
