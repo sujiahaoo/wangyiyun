@@ -10,6 +10,7 @@
   import Dialog from '@/compontents/Dialog';
   import store from '@/store/_index'
   import {mapState} from '@/vuex'
+  import {getUserAccount } from "@/request"
   // console.log(store);
   export default {
     computed:{
@@ -36,8 +37,8 @@
           });
       },
     },
-    // created() {
-    //   Dialog({ title: '警告', message: '我是提示内容！' });
-    // },
+   async created() {
+    
+    },
   };
   </script>

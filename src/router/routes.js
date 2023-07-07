@@ -5,7 +5,7 @@ import MineView from '@/views/MineView.vue';
 export default [
   {
     path: "/",
-    redirect: '/IndexView'
+    redirect: '/Login'
 
   },
   {
@@ -17,11 +17,11 @@ export default [
     path: '/MineView',
     component: MineView,
   },
-  // {
-  //   path: '/Foo',
-  //   // 懒加载组件
-  //   component:()=>import('@/views/Foo.vue')
-  // }
+  {
+    path: '/Login',
+    // 懒加载组件
+    component:()=>import('@/views/Login.vue')
+  }
   ,{
     path: '/SongSheetView',
     // 懒加载组件

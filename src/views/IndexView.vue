@@ -7,7 +7,7 @@
       <!-- {{  switchCheckout}} -->
 
     <!-- <h1 @click="$store.mutations.increase">Index view{{ count }}</h1> -->
-      <div class="h-[14vw] pt-5 flex w-[100vw] mx-auto text-xs:9.9975px fixed top-0  bg-white z-40 dark:bg-black">
+      <div class="h-[14vw] pt-5 flex w-[100vw] mx-auto text-xs:9.9975px fixed top-0  bg-white z-7 dark:bg-black">
         <Icon @click.native="drawerVisible = !drawerVisible" @自定义事件="(e) => (drawerVisible = e)" icon="basil:menu-solid"
           class="w-[4vw] h-[8vw] mr-4 ml-[7vw]" />
         <!-- <router-link :to="{ path: '/MineView' }"> -->
@@ -58,7 +58,7 @@
             <div class="w-[27vw] h-[30vw]  mr-[-1vw] float-left dark:text-[white]">
               <div class="w-[27vw] h-[27vw] overflow-hidden relative rounded-[3vw]">
                 <div class="absolute top-[2vw] right-[6.5%] font-[800] text-[#fff] flex items-center z-30">
-                  <Icon icon="ion:infinite-outline" color="text-[white]" class="w-[6vw] h-[6vw]" />
+                  <Icon icon="ion:infinite-outline" color="text-[white]" class="w-[6vw] h-[6vw] z-3" />
                 </div>
                 <transition class="relative" name="abc" v-for="(item, index) in lunbo" :key="item.id">
                   <div v-if="visible === index" class="absolute top-0 left-0&quot; ">
@@ -225,10 +225,10 @@
             <div class="h-[10vw] w-[83vw] fixed top-0 flex items-center justify-between bg-white dark:bg-black">
               <div class="flex justify-between items-center ">
                 <img class="w-[6.67vw] h-[6.94vw] rounded-[50%] mr-[2.87vw]"
-                  src="https://img0.baidu.com/it/u=1204940695,1987188323&fm=253&fmt=auto&app=138&f=JPEG?w=517&h=500"
+                  :src="user.avatarUrl"
                   alt="">
                 <div class="flex items-center ml-[2vw]">
-                  <span>iKun</span>
+                  <span>{{ user.nickname }}</span>
                   <icon icon="ep:arrow-right-bold" color="black dark:text-white" width="15" class="" />
                 </div>
               </div>
@@ -541,7 +541,7 @@
 
               </div>
               <div
-                class="bg-white w-[75vw] ml-[2vw] dark:bg-gray-900 text-center  h-[15vw] mb-[5vw] rounded-2xl text-red-600 lh">
+                class="bg-white w-[75vw] ml-[2vw] dark:bg-gray-900 text-center  h-[15vw] mb-[5vw] rounded-2xl text-red-600 lh" @click="fn()">
                 退出登录</div>
           
         </div>
@@ -555,12 +555,17 @@
 import axios from 'axios';
 import BScroll from '@better-scroll/core'
 import { mapState } from '@/vuex';
+import store from "storejs";
+import Dialog from '@/compontents/Dialog';
 import {
-    songDetails
+    songDetails,
+    getUserAccount,
+    getUserDetail
 } from '@/request';
 export default {
   data() {
     return {
+      user:{},
       switchCheckStatus: true,
       switchCheckout: false,
       drawerVisible: false,
@@ -612,6 +617,22 @@ export default {
 
 
   methods: {
+   
+      fn() {
+        Dialog({ title: '网易云音乐', message: '确定退出当前账号?' })
+          .then( ()=> {
+            // console.log('点击了确定');
+            this.$router.push('/Login')
+            store.remove('__m__cookie')
+            store.remove('_cookieMusic')
+
+          })
+          .catch(()=> {
+            // console.log('点击了取消');
+      
+
+          });
+      },
     songDetails(id){
         console.log(id)  //7487787817
         this.$router.push({path:'/song',query:{id}});
@@ -647,6 +668,14 @@ export default {
 
 
   async created() {
+    // 通过接口获取数据并存入内存中
+    const resUser = await getUserAccount();
+            // console.log(resUser);
+    store.set('_cookieMusic',resUser.data.profile);
+    const detail = await getUserDetail(resUser.data.profile.userId);
+    console.log(detail);
+    this.user=store.get('_cookieMusic')
+    console.log(this.user);
     axios
       .get(
         'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/calendar?startTime=1606752000000&endTime=1609430399999'
