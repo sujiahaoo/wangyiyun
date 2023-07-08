@@ -4,7 +4,7 @@
         <div class="w-screen h-[80vw] bg-[#9FA160] ">
             <div
                 class="w-[100vw] h-[12vw] mx-auto flex items-center justify-between overflow-hidden fixed top-0  bg-[#9FA160] ">
-                <Icon icon="ic:baseline-less-than" color="white" class="w-[7vw] h-[7vw] mr-[3vw]" />
+                <Icon icon="ic:baseline-less-than" color="white" class="w-[7vw] h-[7vw] mr-[3vw]" @click.native="sss()"/>
                 <b class="text-[white] text-[5vw]">歌单</b>
                 <div class="flex items-center">
                     <Icon icon="simple-line-icons:magnifier" color="white" class="w-[6vw] h-[6vw]" />
@@ -170,7 +170,9 @@ export default {
 
     }
     , methods: {
-
+        sss(){
+      this.$router.push('/IndexView')
+    },
         handleArrowUpClick() {
             this.visisbly = !this.visisbly
             this.xians = !this.xians

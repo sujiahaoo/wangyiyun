@@ -5,7 +5,7 @@ import MineView from '@/views/MineView.vue';
 export default [
   {
     path: "/",
-    redirect: '/Login'
+    redirect: '/PersonalCenter'
 
   },
   {
@@ -31,6 +31,16 @@ export default [
   {
     path:'/song',
     component:SongSheetView
+  }
+  ,{
+    path: '/MyProfileView',
+    // 懒加载组件
+    component:()=>import('@/views/MyProfileView.vue')
+  }
+  ,{
+    path: '/PersonalCenter',
+    // 懒加载组件
+    component:()=>import('@/views/PersonalCenter.vue')
   }
 ]
 

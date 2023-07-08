@@ -15,9 +15,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test:/\.template$/,
-        use:{
-          loader:path.resolve(__dirname,'./loaders/template.js')
+        test: /\.template$/,
+        use: {
+          loader: path.resolve(__dirname, './loaders/template.js')
         }
       },
       {
@@ -41,18 +41,24 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      }
+      },
+      // {
+      //   test: /\.js$/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //   },
+      // },
     ],
   },
   mode: process.env.NODE_ENV,
   resolve: {
     alias: {
-      vue:'vue/dist/vue.esm.js',
+      vue: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, '../src'),
     },
   },
   externals: {
-    vue:'Vue'
+    vue: 'Vue'
   },
   devServer: {
     open: true,
@@ -79,7 +85,7 @@ module.exports = {
       template: './public/index.html',
       cdn: {
         script: [
-         'https://cdn.jsdelivr.net/npm/vue@2'
+          'https://cdn.jsdelivr.net/npm/vue@2'
         ],
         style: [],
       },
