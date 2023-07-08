@@ -51,3 +51,6 @@ export const getUserDetail = (uid) => http.get('/user/detail',{params:{uid}});
 
 export const musicSlider = (params) => http.get(`related/playlist?id=${params}`)
 
+export const fetchUserPlaylist = (uid) =>
+  http.get('/user/playlist', { params: { uid } });
+

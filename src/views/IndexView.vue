@@ -223,7 +223,7 @@
           <template>
 
             <div class="h-[10vw] w-[83vw] fixed top-0 flex items-center justify-between bg-white dark:bg-black">
-              <div class="flex justify-between items-center ">
+              <div class="flex justify-between items-center " @click="pelpeo()">
                 <img class="w-[6.67vw] h-[6.94vw] rounded-[50%] mr-[2.87vw]"
                   :src="user.avatarUrl"
                   alt="">
@@ -639,6 +639,9 @@ export default {
       },
     sss(){
       this.$router.push('/MineView')
+    },
+    pelpeo(){
+      this.$router.push('/PersonalCenter')
     },
     init(name) {
       this.bs = new BScroll(name, {
