@@ -5,7 +5,7 @@ import MineView from '@/views/MineView.vue';
 export default [
   {
     path: "/",
-    redirect: '/MyProfileView'
+    redirect: '/IndexView'
 
   },
   {
