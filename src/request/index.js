@@ -53,4 +53,7 @@ export const musicSlider = (params) => http.get(`related/playlist?id=${params}`)
 
 export const fetchUserPlaylist = (uid) =>
   http.get('/user/playlist', { params: { uid } });
+ 
 
+// 我的评论
+export const getUserComment = (uid) => http.get('/user/comment/history',{params: { uid } })

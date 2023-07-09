@@ -5,7 +5,7 @@ import MineView from '@/views/MineView.vue';
 export default [
   {
     path: "/",
-    redirect: '/Pers'
+    redirect: '/MyProfileView'
 
   },
   {
@@ -35,12 +35,12 @@ export default [
   ,{
     path: '/MyProfileView',
     // 懒加载组件
-    component:()=>import('@/views/MyProfileView.vue')
+    component:()=>import('@/views/MyProfileView.jsx')
   }
   ,{
     path: '/Pers',
     // 懒加载组件
-    component:()=>import('@/views/PersonalCenter.vue')
+    component:()=>import('@/views/PersonalCenter.jsx')
   }
   ,{
     path: '/0708',

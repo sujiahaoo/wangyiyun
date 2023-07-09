@@ -641,7 +641,7 @@ export default {
       this.$router.push('/MineView')
     },
     pelpeo(){
-      this.$router.push('/PersonalCenter')
+      this.$router.push('/Pers')
     },
     init(name) {
       this.bs = new BScroll(name, {
