@@ -12,6 +12,7 @@ import 'vant/lib/index.css';
 import 'core-js';
 Vue.use(Vant);
 import { Popup,Area } from 'vant';
+
 Vue.use(Popup).use(Area).use(formateTime);
 
 const vm = new Vue({

@@ -5,7 +5,7 @@ import MineView from '@/views/MineView.vue';
 export default [
   {
     path: "/",
-    redirect: '/Login'
+    redirect: '/player'
 
   },
   {
@@ -46,6 +46,12 @@ export default [
     path: '/0708',
     // 懒加载组件
     component:()=>import('@/views/Feat-0708.jsx')
+  },
+  {
+    path: '/player',
+    // 懒加载组件
+    component:()=>import('@/compontents/player/player.vue')
   }
+  
 ]
 

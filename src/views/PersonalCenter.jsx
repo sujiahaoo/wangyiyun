@@ -1,6 +1,8 @@
 import store from "storejs";
+import { Tab, Tabs } from 'vant';
 import { getUserDetail, getUserAccount, fetchUserPlaylist, getUserComment } from '@/request'
 import { areaList } from '@vant/area-data';
+Vue.use(Tabs).use(Tab)
 export default {
     render() {
         return (
@@ -10,7 +12,7 @@ export default {
                         <img src={this.userData.backgroundUrl} alt="" class="absolute h-[70vw] w-screen" />
                         <div class="h-[12vw] flex items-center justify-between fixed w-[100vw]">
 
-                            <van-icon name="arrow-left" size="7vw" color="white" onClick={ this.tiao} />
+                            <van-icon name="arrow-left" size="7vw" color="white" onClick={this.tiao} />
                             <div class="flex items-center">
                                 <div class="w-[13vw] h-[7vw] text-[2vw] bg-[#F3EEE6] rounded-2xl text-center leading-[7vw] ">照片墙
 
@@ -24,9 +26,9 @@ export default {
 
                         </div>
                     </div>
-                    <div class="w-[92vw] h-[46vw] bg-[white] mx-auto rounded-xl  absolute left-[4vw] top-[63vw] text-center">
+                    <div class="w-[92vw] bg-[white] relative mx-auto rounded-xl left-[1vw] top-[-20vw] mt-[14vw] text-center">
                         <img src={this.userData.avatarUrl} alt="" class="w-[18vw] h-[18vw] rounded-[50%] absolute top-[-8vw] left-[37vw]" />
-                        <div class="text-[5vw] mt-[10vw]">{this.userData.nickname}</div>
+                        <div class="text-[5vw] pt-[14vw]">{this.userData.nickname}</div>
                         <div class="text-[3vw] text-[#D2D4DA] mt-[2vw]"> <span class="mr-[3vw]">{this.datause.data.profile.follows
                         }&nbsp;关注</span> <span>{this.datause.data.profile.followeds}&nbsp;粉丝</span> <span class="ml-[4vw]">Lv.{
                             this.datause.data.level}</span></div>
@@ -41,39 +43,64 @@ export default {
                         </div>
                         <div class="flex  mt-[3vw]">
                             <div class="w-[22vw] h-[8vw] border text-[4vw] rounded-xl leading-[8vw] ml-[30vw]" onClick={this.tiaozhuan}>编辑资料</div>
-                            <div class="border w-[7vw] h-[7vw] rounded-[50%] ml-[3vw]"><van-icon name="arrow-down" /></div>
+                            <div class="border w-[7vw] h-[7vw] rounded-[50%] ml-[3vw] transform animate-spin"><van-icon name="arrow-down" onClick={this.fangfa} /></div>
                         </div>
+                        {this.visvible == true ? (
+                            <ul class="h-[40vw] flex justify-around items-center  transition-all ease-in-out">
+                                <li class="w-[25vw] h-[35vw] bg-[#F7F7F7] text-center rounded-xl">
+
+                                    <img src="https://pic.rmb.bdstatic.com/05c721972dfddac4de018101bfc6f69f.jpeg" class="w-[12vw] relative top-[3vw] ml-[4vw] h-[12vw] rounded-full" alt="" />
+                                    <p class="mt-[3vw]">ikun</p>
+                                    <div class="border-[red] border w-[14vw] h-[7vw] text-[red] rounded-xl ml-[4vw]">+ 关注</div>
+                                </li>
+                                <li class="w-[25vw] h-[35vw] bg-[#F7F7F7] text-center rounded-xl">
+
+                                    <img src="https://pic.rmb.bdstatic.com/05c721972dfddac4de018101bfc6f69f.jpeg" class="w-[12vw] relative top-[3vw] ml-[4vw] h-[12vw] rounded-full" alt="" />
+                                    <p class="mt-[3vw]">ikun</p>
+                                    <div class="border-[red] border w-[14vw] h-[7vw] text-[red] rounded-xl ml-[4vw]">+ 关注</div>
+                                </li>
+                                <li class="w-[25vw] h-[35vw] bg-[#F7F7F7] text-center rounded-xl">
+
+                                    <img src="https://pic.rmb.bdstatic.com/05c721972dfddac4de018101bfc6f69f.jpeg" class="w-[12vw] relative top-[3vw] ml-[4vw] h-[12vw] rounded-full" alt="" />
+                                    <p class="mt-[3vw]">ikun</p>
+                                    <div class="border-[red] border w-[14vw] h-[7vw] text-[red] rounded-xl ml-[4vw]">+ 关注</div>
+                                </li>
+                            </ul>) : ('')}
                     </div>
-                    <div class="w-[92vw] h-[58vw] bg-white mx-auto mt-[54vw] rounded-xl relative">
-                        <div class="flex justify-around absolute top-[-10vw] text-[5vw]">
-                            <div class="ml-[13vw] border-b-[3px] border-[red]">主页</div>
-                            <div class="ml-[13vw]">动态</div>
-                            <div class="ml-[13vw]">播客</div>
-                        </div>
-                        <div class="text-[5vw]  pt-[5vw]">
-                            <b class="ml-[9vw]">音乐品味</b>
-                        </div>
-                        <div class="w-[86vw] h-[36vw] flex mx-auto justify-around mt-[5vw] relative">
-                            <div class="w-[27vw] h-[30vw] border rounded-xl bg-[#FEF5F3]">
-                                <p class="text-[3.5vw] text-[#A8ACB3] ml-[3vw] mt-[2vw]">我的喜欢</p>
-                                <b class="text-[4vw] ml-[3vw]">40首</b>
-                                <div class="text-[3.5vw] text-[#A8ACB3] absolute bottom-[8vw] left-[2vw]"><van-icon name="like-o"
-                                    color="#A8ACB3" />喜欢的音乐</div>
-                            </div>
-                            <div class="w-[27vw] h-[30vw] border rounded-xl bg-[#FDF9ED] relative">
-                                <p class="text-[3.5vw] text-[#A8ACB3] ml-[3vw] mt-[2vw]">累计听歌</p>
-                                <b class="text-[4vw]  ml-[3vw]">{this.datause.data.listenSongs}首</b>
-                                <div class="text-[3.5vw] text-[#A8ACB3] absolute top-[23vw] left-[2vw]"><van-icon name="like-o"
-                                    color="#A8ACB3" />听歌排行</div>
-                            </div>
-                            <div class="w-[27vw] h-[30vw] border rounded-xl bg-[#F7FAFC] relative">
-                                <p class="text-[3.5vw] text-[#A8ACB3] ml-[3vw] mt-[2vw]">我的喜欢</p>
-                                <b class="text-[4vw]  ml-[3vw]">属于你的音乐档案</b>
-                                <div class="text-[3.5vw] text-[#A8ACB3] absolute top-[23vw] left-[2vw]"><van-icon name="like-o"
-                                    color="#A8ACB3" />黑胶时光机</div>
-                            </div>
-                        </div>
-                    </div>
+
+                   
+
+                    <van-tabs class="mt-[-10vw]">
+                        <van-tab title="主页"> <div class="w-[92vw] h-[58vw] bg-white mx-auto rounded-xl relative">
+                       
+                       <div class="text-[5vw]  pt-[5vw]">
+                           <b class="ml-[9vw]">音乐品味</b>
+                       </div>
+                       <div class="w-[86vw] h-[36vw] flex mx-auto justify-around mt-[5vw] relative">
+                           <div class="w-[27vw] h-[30vw] border rounded-xl bg-[#FEF5F3]">
+                               <p class="text-[3.5vw] text-[#A8ACB3] ml-[3vw] mt-[2vw]">我的喜欢</p>
+                               <b class="text-[4vw] ml-[3vw]">40首</b>
+                               <div class="text-[3.5vw] text-[#A8ACB3] absolute bottom-[8vw] left-[2vw]"><van-icon name="like-o"
+                                   color="#A8ACB3" />喜欢的音乐</div>
+                           </div>
+                           <div class="w-[27vw] h-[30vw] border rounded-xl bg-[#FDF9ED] relative">
+                               <p class="text-[3.5vw] text-[#A8ACB3] ml-[3vw] mt-[2vw]">累计听歌</p>
+                               <b class="text-[4vw]  ml-[3vw]">{this.datause.data.listenSongs}首</b>
+                               <div class="text-[3.5vw] text-[#A8ACB3] absolute top-[23vw] left-[2vw]"><van-icon name="like-o"
+                                   color="#A8ACB3" />听歌排行</div>
+                           </div>
+                           <div class="w-[27vw] h-[30vw] border rounded-xl bg-[#F7FAFC] relative">
+                               <p class="text-[3.5vw] text-[#A8ACB3] ml-[3vw] mt-[2vw]">我的喜欢</p>
+                               <b class="text-[4vw]  ml-[3vw]">属于你的音乐档案</b>
+                               <div class="text-[3.5vw] text-[#A8ACB3] absolute top-[23vw] left-[2vw]"><van-icon name="like-o"
+                                   color="#A8ACB3" />黑胶时光机</div>
+                           </div>
+                       </div>
+                   </div></van-tab>
+                        <van-tab title="动态"><div class="w-[92vw] h-[58vw] bg-white mx-auto rounded-xl relative"></div></van-tab>
+                        <van-tab title="博客"><div class="w-[92vw] h-[58vw] bg-white mx-auto rounded-xl relative"></div></van-tab>
+                    </van-tabs>
+
                     <div class="w-[90vw] bg-[white] mx-auto mt-[10vw] rounded-xl">
                         <div class="pt-[4vw] ml-[4vw]">
                             <b class="text-[5vw]">收藏的歌单</b> (23)<span>
@@ -144,7 +171,7 @@ export default {
                             <div class='mt-[2vw]'>地区:{areaList.province_list[this.datause.data.profile.province]
                             }&nbsp;{areaList.city_list[this.datause.data.profile.city]}</div>
                         </div>
-                        <div class="h-[10vw] w-[90vw] border-t-2 text-center leading-[10vw] text-[3vw] text-[#D5D4D5]">查看更多<van-icon name="arrow" color="#D5D4D5"/></div>
+                        <div class="h-[10vw] w-[90vw] border-t-2 text-center leading-[10vw] text-[3vw] text-[#D5D4D5]">查看更多<van-icon name="arrow" color="#D5D4D5" /></div>
 
                     </div>
                 </div>
@@ -159,7 +186,9 @@ export default {
             songList: [],
             create: [],
             comment: [],
-            cunmin: []
+            cunmin: [],
+            visvible: false,
+            active: 2,
         }
     },
     async created() {
@@ -183,8 +212,8 @@ export default {
             .slice(0, 1);
         this.comment = res5.data.data
         this.trackCount = res4.data.playlist[0].trackCount;
-        // console.log('收藏的歌单', this.songList);
-        // console.log('创建的歌单', this.create);
+        console.log('收藏的歌单', this.songList);
+        console.log('创建的歌单', res4.data);
         // console.log('评论', this.comment);
     },
     methods: {
@@ -203,9 +232,12 @@ export default {
             this.$router.push('/MyProfileView')
 
         },
-        tiao(){
+        tiao() {
             this.$router.push('/IndexView')
 
+        },
+        fangfa() {
+            this.visvible = !this.visvible
         }
 
     }

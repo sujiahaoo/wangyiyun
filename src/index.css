@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.van-tab {
+    background-color: #F5F8FA;
+}

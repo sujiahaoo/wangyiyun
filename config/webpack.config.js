@@ -95,7 +95,7 @@ module.exports = {
     new VueLoaderPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: "./src/static", to: "./dist" },
+        { from: "./src/static", to: "./static" },
         // { from: "other", to: "public" },
       ],
     }),

@@ -18,13 +18,12 @@ export default {
                         <ul class="w-screen h-[54vw] bg-[white]">
                             <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">头像</span><span class="flex   items-center mr-[5vw]"><img src={this.userData.avatarUrl} alt="" class="w-[12vw] h-[12vw] rounded-full" /> <van-icon name="arrow" color="#CECFD1" /></span></li>
                             <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">昵称</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]">{this.userData.nickname}<van-icon name="arrow" color="#CECFD1" /></span></li>
-                            <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">性别</span><span class="flex   items-center mr-[5vw]"> <van-icon name="arrow" color="#CECFD1" /></span></li>
+                            <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">性别</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]"> 男<van-icon name="arrow" color="#CECFD1" /></span></li>
                             <li class="flex justify-between  h-[13vw]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">二维码</span><span class="flex   items-center mr-[5vw]"><van-icon name="enlarge" color="#CECFD1" class="mr-[2vw]" /><van-icon name="arrow" color="#CECFD1" /></span></li>
                         </ul>
                         <ul class="w-screen mt-[3vw] bg-[white]">
                             <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">生日</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]">请输入输入信息 <van-icon name="arrow" color="#CECFD1" /></span></li>
-                            <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">地区</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]" onClick={this.negation}>{areaList.province_list[this.datause.data.profile.province]
-                            }&nbsp;{areaList.city_list[this.datause.data.profile.city]}<van-icon name="arrow" color="#CECFD1" /></span></li>
+                            <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">地区</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]" onClick={this.negation}>{this.Greeting(this.isLoggedIn)}<van-icon name="arrow" color="#CECFD1" /></span></li>
                             <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">大学</span><span class="flex   items-center mr-[5vw]"> <van-icon name="arrow" color="#CECFD1" /></span></li>
                             <li class="flex justify-between border-b-[1px] h-[13vw]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">音乐标签</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]">请选择标签<van-icon name="arrow" color="#CECFD1" /></span></li>
                             <li class="flex justify-between border-b-[1px] h-[13vw]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">简介</span><span class="flex   items-center mr-[5vw]"><van-icon name="arrow" color="#CECFD1" /></span></li>
@@ -49,7 +48,9 @@ export default {
         return {
             areaList,
             userData: [],
+            areaDate:[],
             popupVisible: false,
+            isLoggedIn: true,
         }
     },
     async created() {
@@ -64,14 +65,23 @@ export default {
         confirm(e) {
             this.popupVisible = false;
             console.log(e);
+            this.areaDate=e
+            this.isLoggedIn=false
         },
         negation() {
-            this.popupVisible = !this.popupVisible
+            this.popupVisible = !this.popupVisible;
         }
         ,
         tiaozhuan() {
             this.$router.push('/Pers')
 
+        },
+        Greeting(isLoggedIn) {
+            if (isLoggedIn) {
+                return <p class="text-[3.84vw] text-[#929292]">{areaList.province_list[this.userData.province]}&nbsp;&nbsp;{areaList.city_list[this.userData.city]}</p>
+            } else {
+                return <p class="text-[3.84vw] text-[#929292]">{this.areaDate[0].name}&nbsp;&nbsp;{this.areaDate[1].name}</p>
+            }
         }
     }
 
