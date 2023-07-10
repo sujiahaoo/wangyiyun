@@ -5,7 +5,7 @@ import { areaList } from '@vant/area-data';
 export default {
     render() {
         return (
-            <Wrapper>
+            <Wrapper> 
                 <div class="bg-[#E9EBEE]">
                     <div class="h-[10vw] w-screen leading-[10vw] bg-[white]">
                         <van-icon name="arrow-left" class="w-[6vw] h-[6vw] ml-[6vw]" onClick={this.tiaozhuan} />
