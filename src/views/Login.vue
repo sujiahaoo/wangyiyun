@@ -59,7 +59,7 @@
                 const timer = setInterval(async()=>{
                     const res = await checkQrStatus(key);
                     this.state = res.data.code;
-                    console.log(this.state);
+                    // console.log(this.state);
                     if(res.data.code === 800){
                         // alert('此二维码已过期，请刷新后重试');
                         clearInterval(timer);

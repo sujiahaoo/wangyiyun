@@ -120,7 +120,7 @@
                     </header>
                     <ul class="w-[90vw]">
                         <li v-for="(item, index) in songqu" :key="item.id"
-                            class="flex items-center justify-between ml-[4vw] w-[90vw] h-[14vw] text-[4vw] ">
+                            class="flex items-center justify-between ml-[4vw] w-[90vw] h-[14vw] text-[4vw] " @click="shows">
                             <div class="flex">
                                 <span class="mt-[3vw] text-[#CBCCD3]">{{ index + 1 }} </span>
                                 <span  @click="playAdd(item)" class="ml-[6vw] w-[62vw] whitespace-nowrap overflow-hidden text-overflow-ellipsi">{{
@@ -156,7 +156,8 @@ export default {
             songqu: {},
             lunbo: {},
             data: {},
-            check: true
+            check: true,
+            show:false
         }
     },
     async created() {
@@ -235,6 +236,9 @@ export default {
                 probeType: 3,
                 click: true
             })
+        },
+        shows() {
+            this.show = !this.show
         },
 
     },

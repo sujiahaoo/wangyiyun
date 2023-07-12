@@ -15,9 +15,9 @@ import 'core-js';
 Vue.use(Vant);
 import { Popup,Area } from 'vant';
 import { Circle } from 'vant';
-import { NoticeBar,DatetimePicker,Picker  } from 'vant';
+import { NoticeBar,DatetimePicker,Picker,Field,Cell, CellGroup   } from 'vant';
 
-Vue.use(Popup).use(Area).use(formateTime).use(Circle).use(NoticeBar).use(DatetimePicker).use(Picker);
+Vue.use(Popup).use(Area).use(formateTime).use(Circle).use(NoticeBar).use(DatetimePicker).use(Picker).use(Field).use(CellGroup).use(Cell);
 
 const vm = new Vue({
   el: '#app',

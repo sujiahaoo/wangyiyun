@@ -7,7 +7,7 @@
       <!-- {{  switchCheckout}} -->
 
     <!-- <h1 @click="$store.mutations.increase">Index view{{ count }}</h1> -->
-      <div class="h-[14vw] pt-5 flex w-[100vw] mx-auto text-xs:9.9975px fixed top-0  bg-white z-7 dark:bg-black">
+      <div class="h-[14vw] pt-5 flex w-[100vw] mx-auto text-xs:9.9975px fixed top-0  bg-white z-11 dark:bg-black">
         <Icon @click.native="drawerVisible = !drawerVisible" @自定义事件="(e) => (drawerVisible = e)" icon="basil:menu-solid"
           class="w-[4vw] h-[8vw] mr-4 ml-[7vw]" />
         <!-- <router-link :to="{ path: '/MineView' }"> -->

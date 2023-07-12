@@ -1,14 +1,21 @@
 <template>
-    <div class="w-[100%] px-[4vw] bg-[grey] fixed bottom-0 z-[50]">
+    <div class="w-[100%] px-[4vw] bg-[white] fixed bottom-0 z-[50]">
         <div class="h-[14.3vw] flex items-center justify-between">
             <div class="w-[10.77vw] rotate-container">
                 <!-- <img src="../../static/55.png" alt="" class="w-[10.77vw] h-[10.77vw]" > -->
-                <div class="w-[12vw] h-[12vw] rounded-full"></div>
-                <img :src="Player._currentTrack?.al?.picUrl" alt="" class="w-[8vw] h-[8vw] rounded-[50%] absolute top-[1.75vw] left-[1.75vw] rotate-image"  :class="{ 'paused-animation': this.play }">
+                <div class="w-[12vw] h-[12vw] rounded-full bg-black "></div>
+                <img :src="Player._currentTrack?.al?.picUrl" alt="" class="w-[8vw] h-[8vw] rounded-[50%] absolute top-[2vw] left-[2vw] rotate-image"  :class="{ 'paused-animation': this.play }">
             </div>
-            <p class="w-[58vw] text-[white] text-[3.33vw]">{{ Player._currentTrack.name }}</p>
-              <van-circle v-model="currentRate" :rate="30" :speed="100" :text="text" size="40px" :stroke-width="80" color="black"><Icon @click.native="Player.playOrPause()" icon="ion:play-sharp" class="text-[2.48vw] text-[white]"/></van-circle>
-            <Icon @click.native="display" icon="iconamoon:playlist" class="text-[4.7vw] text-[white]" />
+            <p class="w-[58vw] text-[black] text-[3.33vw]">{{ Player._currentTrack.name }}</p>
+              <van-circle v-model="currentRate" :rate="30" :speed="100" :text="text" size="50px" :stroke-width="80" color="black" layer-color="red">
+                <div @click="Player.playOrPause()">
+                  <!-- <Icon @click.native="shows" v-if="xian" icon="ion:play-sharp"  class="w-[4vw] h-[4vw] "/> -->
+                  <Icon @click.native="shows" v-if="yin" icon="ph:play-fill" />
+                <Icon @click.native="shows" v-if="xian" icon="ic:round-pause" />
+                </div>
+                
+              </van-circle>
+            <Icon @click.native="display" icon="iconamoon:playlist" class="text-[4.7vw] text-[black]" />
         </div>
          <van-popup v-model= show round position="bottom" style=" height:70%;backgroundColor:#272727"  >
             <div class="w-[100%] pr-[5vw] pl-[4.62vw]">
@@ -59,6 +66,8 @@ export default {
             currentRate:0,
             fetch:[],
             play:window.$player?._playing,
+            xian:true,
+            yin:false
         }
     },
     computed: {
@@ -69,15 +78,19 @@ export default {
     methods:{
         display(){
             this.show = !this.show
+        },
+        shows(){
+          this.xian=!this.xian;
+          this.yin=!this.yin;
         }
     },
      async created() {
         console.log(this.Player);
         window.$player = this.Player,
         songQu(this.$route.query.id).then((res) => {
-          console.log(res)
+          // console.log(res)
           this.fetch = res.data.songs 
-          console.log(this.fetch);
+          // console.log(this.fetch);
         })
     },
    

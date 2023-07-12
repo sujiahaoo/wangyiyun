@@ -4,3 +4,6 @@
 .van-tab {
     background-color: #F5F8FA;
 }
+.van-picker__columns{
+    height: 0;
+}
