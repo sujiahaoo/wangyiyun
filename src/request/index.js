@@ -58,5 +58,6 @@ export const fetchUserPlaylist = (uid) =>
 // 我的评论
 export const getUserComment = (uid) => http.get('/user/comment/history',{params: { uid } })
 
+export const getMP3 = (id) => http.get('/song/url/v1',{params: { id,level:'standard' } })
+
 export const getTrackDetail = (id) => http.get('/song/detail', { params: { ids: id } });
-export const getMP3 = (uid) => http.get('/song/url/v1',{params: { id,level:'stan' } })

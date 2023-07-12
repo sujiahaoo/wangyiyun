@@ -86,14 +86,12 @@ export default {
                            <div class="w-[27vw] h-[30vw] border rounded-xl bg-[#FDF9ED] relative">
                                <p class="text-[3.5vw] text-[#A8ACB3] ml-[3vw] mt-[2vw]">累计听歌</p>
                                <b class="text-[4vw]  ml-[3vw]">{this.datause.data.listenSongs}首</b>
-                               <div class="text-[3.5vw] text-[#A8ACB3] absolute top-[23vw] left-[2vw]"><van-icon name="like-o"
-                                   color="#A8ACB3" />听歌排行</div>
+                               <div class="text-[3.5vw] text-[#A8ACB3] absolute top-[23vw] left-[2vw]"><van-icon name="bar-chart-o" color="#A8ACB3" />听歌排行</div>
                            </div>
                            <div class="w-[27vw] h-[30vw] border rounded-xl bg-[#F7FAFC] relative">
                                <p class="text-[3.5vw] text-[#A8ACB3] ml-[3vw] mt-[2vw]">我的喜欢</p>
-                               <b class="text-[4vw]  ml-[3vw]">属于你的音乐档案</b>
-                               <div class="text-[3.5vw] text-[#A8ACB3] absolute top-[23vw] left-[2vw]"><van-icon name="like-o"
-                                   color="#A8ACB3" />黑胶时光机</div>
+                               <div class="text-[4vw]  ml-[3vw] font-bold">属于你的音乐档案</div>
+                               <div class="text-[3.5vw] text-[#A8ACB3] absolute top-[23vw] left-[2vw]"><van-icon name="balance-o" color="#A8ACB3" />黑胶时光机</div>
                            </div>
                        </div>
                    </div></van-tab>
@@ -175,6 +173,7 @@ export default {
 
                     </div>
                 </div>
+                <div class="h-[16vw] w-screen"></div>
             </Wrapper>
         )
     },

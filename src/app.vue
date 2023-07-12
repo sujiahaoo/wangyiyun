@@ -5,12 +5,17 @@
     <!-- <router-link :to="{path:'/IndexView'}">go to IndexVIew</router-link> -->
 
     <router-view></router-view>
+    <!-- 播放 -->
+    <Player/>
+    <!-- <Menus /> -->
   </div>
 </template>
 <script>
+import Player from "@/compontents/player/player.vue"
 
 
 export default {
+  components:{Player}
   // created() {
   //   // setTimeout(() => {
   //   //   // 编程式导航

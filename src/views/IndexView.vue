@@ -582,6 +582,7 @@ export default {
       lunbo: [],
       show: false,
       resourceData: '网易云音乐真好',
+      check:true
     }
   },
   computed:{
