@@ -63,6 +63,16 @@ export default [
     // 懒加载组件
     component:()=>import('@/views/MusicplayerView.vue')
   },
-  
+  {
+    path: '/MusicplayerView',
+    // 懒加载组件
+    component:()=>import('@/views/MusicplayerView.vue')
+  },
+
+  {
+    path: '/MVleaderboardView',
+    // 懒加载组件
+    component:()=>import('@/views/MVleaderboardView.vue')
+  },
 ]
 

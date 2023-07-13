@@ -123,7 +123,7 @@
                             class="flex items-center justify-between ml-[4vw] w-[90vw] h-[14vw] text-[4vw] " @click="shows">
                             <div class="flex">
                                 <span class="mt-[3vw] text-[#CBCCD3]">{{ index + 1 }} </span>
-                                <span  @click="playAdd(item)" class="ml-[6vw] w-[62vw] whitespace-nowrap overflow-hidden text-overflow-ellipsi">{{
+                                <span  @click="playSingle(item.id)" class="ml-[6vw] w-[62vw] whitespace-nowrap overflow-hidden text-overflow-ellipsi">{{
                                     item.name }} <div class="flex">
                                         <div v-for="item2 in item.ar" :key="item2" class="text-[3vw] text-[#CBCCD3]">
                                             {{ item2.name }}&nbsp;
@@ -208,6 +208,8 @@ export default {
 
             } else if (num > 10000) {
                 return (num / 10000).toFixed(0) + "万";
+            }else{
+                return num
             }
         }
         ,
@@ -215,16 +217,16 @@ export default {
             //  console.log(id)  //7487787817
             this.$router.push({ path: '/song', query: { id } });
         },
-        playAll() {
-            window.$player.replacePlaylist(this.songqu.map((song) => song?.id)),'',''
-        },
-        playAdd(item){
-      window.$player.replacePlaylist(
-        this.songqu.map((songqu)=> songqu.id),
-        "",
-        "",
-        item.id)
-    },
+    //     playAll() {
+    //         window.$player.replacePlaylist(this.songqu.map((song) => song?.id)),'',''
+    //     },
+    //     playAdd(item){
+    //   window.$player.replacePlaylist(
+    //     this.songqu.map((songqu)=> songqu.id),
+    //     "",
+    //     "",
+    //     item.id)
+    // },
         handleScroll() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
             this.check = scrollTop > this.$refs.wrapper.offsetHeight / 2 ? false : true;
@@ -240,6 +242,21 @@ export default {
         shows() {
             this.show = !this.show
         },
+
+        playAll() {
+            this.$player.replacePlaylist(
+                this.songqu.map((song) => song.id, '', '', ''),
+                store.set('cookie_music', this.songqu)
+            );
+            console.log('$player', window.$player._currentTrack?.al?.picUrl);
+        },
+        // 播放器 播放单个
+        playSingle(id) {
+            this.$player.replacePlaylist([id], '', '');
+            store.set('cookie_music', this.songqu);
+            // this.$router.push('/PlayerHome')
+        },
+
 
     },
 

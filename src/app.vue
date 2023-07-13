@@ -6,7 +6,8 @@
 
     <router-view></router-view>
     <!-- 播放 -->
-    <Player/>
+    <!-- 播放器 -->
+        <Player class="fixed bottom-0 bg-[#fff] z-[30]" />
     <!-- <Menus /> -->
   </div>
 </template>
@@ -16,27 +17,6 @@ import Player from "@/compontents/player/player.vue"
 
 export default {
   components:{Player}
-  // created() {
-  //   // setTimeout(() => {
-  //   //   // 编程式导航
-  //   //   this.$router.push('/IndexView');
-  //   // }, 10000);
-  // },
-  // components: { IndexView },
-  // data() {
-  //   return {
-  //     visibleView: 'HomeView',
-  //   };
-  // },
-  // beforeCreate() {
-  //   window.onhashchange = () => {
-  //     this.visibleView = location.hash.replace('#', '');
-  //     console.log(this.visibleView);
-  //   };
-  // },
-  // created() {
-  //   window.vm = this;
-  // },
 };
 </script>
 <style>

@@ -1,124 +1,154 @@
 <template>
-    <div class="w-[100%] px-[4vw] bg-[white] fixed bottom-0 z-[50]">
-        <div class="h-[14.3vw] flex items-center justify-between">
-            <div class="w-[10.77vw] rotate-container">
-                <!-- <img src="../../static/55.png" alt="" class="w-[10.77vw] h-[10.77vw]" > -->
-                <div class="w-[12vw] h-[12vw] rounded-full bg-black "></div>
-                <img :src="Player._currentTrack?.al?.picUrl" alt="" class="w-[8vw] h-[8vw] rounded-[50%] absolute top-[2vw] left-[2vw] rotate-image"  :class="{ 'paused-animation': this.play }">
-            </div>
-            <p class="w-[58vw] text-[black] text-[3.33vw]">{{ Player._currentTrack.name }}</p>
-              <van-circle v-model="currentRate" :rate="30" :speed="100" :text="text" size="50px" :stroke-width="80" color="black" layer-color="red">
-                <div @click="Player.playOrPause()">
-                  <!-- <Icon @click.native="shows" v-if="xian" icon="ion:play-sharp"  class="w-[4vw] h-[4vw] "/> -->
-                  <Icon @click.native="shows" v-if="yin" icon="ph:play-fill" />
-                <Icon @click.native="shows" v-if="xian" icon="ic:round-pause" />
-                </div>
-                
-              </van-circle>
-            <Icon @click.native="display" icon="iconamoon:playlist" class="text-[4.7vw] text-[black]" />
-        </div>
-         <van-popup v-model= show round position="bottom" style=" height:70%;backgroundColor:#272727"  >
-            <div class="w-[100%] pr-[5vw] pl-[4.62vw]">
-              <p class="text-[4vw] text-[white] mt-[4.97vw] pb-[4.4vw]">当前播放</p>
-              <div class="text-[white] text-[4.26vw] flex items-center justify-between pr-[8vw]">
-                <div class=" flex items-center justify-between"> <Icon icon="icon-park-outline:loop-once" class="text-[#ADADAD] text-[5.38vw]" />&nbsp;&nbsp;列表循环</div>
-                <div class="flex items-center justify-between w-[28vw]">
-                <Icon icon="line-md:downloading-loop" class="text-[#ADADAD] text-[5.38vw]" />
-                <Icon icon="icon-park-outline:add" class="text-[#ADADAD] text-[5.38vw]" />
-                <Icon icon="uiw:delete" class="text-[#ADADAD] text-[5vw]" />
-                </div>
-              </div>
-              <!-- 歌曲列表 -->
-              <div class="mt-[8vw]">
-         <ul class="">
-            <li class="flex justify-between items-center mt-[6vw]" v-for='item in fetch' :key="item" >
-              <!-- <div class="text-[3vw] text-[#afac86] w-[4vw]">{{index+1}}</div> -->
-              <div class="text-[4vw] text-white dark:text-[black] w-[66vw] overflow-hidden h-[13vw]"><p>{{item.name}}</p>
-            <div class="text-[white] dark:text-[black] text-[3vw] mt-[2vw] ">
-            <!-- <p class="text-[#d3c27a] text-[2vw] border border-[#d3c27a] flex justify-center items-center">
-              <span>超清母带</span>
-            </p> -->
-            <template v-for="artist in item.ar">
-              <span v-if="artist.name" class="overflow-hidden" :key="artist">{{ artist.name }}</span>
-            </template>
+  <div class="px-[4.5vw] bg-[#F9F9FA] h-[12.5vw] border-b-[1px] border-[#F5F8FA] flex items-center w-[100vw]">
+      <div @click="$router.push('/MusicplayerView')" class="flex items-center">
+          <div class="w-[10vw] h-[10vw] relative flex items-center justify-center rotateAnimation"
+              :class="{ 'paused-animation': !this?.$player?._playing }">
+              <img src="/static/fang.png" alt="" class="absolute top-0 left-0 z-[1] w-[10vw] h-[10vw]">
+              <img :src="$player._currentTrack?.al?.picUrl" alt="" class="w-[7vw] h-[7vw] rounded-[50%]">
           </div>
+          <div class="text-[3vw] w-[60vw] text-ellipsis overflow-hidden whitespace-nowrap ml-[2vw]">
+              <span class="text-[#3E485E]">{{ $player._currentTrack.name }}</span>
+              <span class="text-[#7B8591]">-</span>
+          </div>
+      </div>
+      <div class="w-[5.6vw] h-[5.6vw] relative ml-[2.2vw] overflow-hidden">
+          <van-circle v-model="currentRate" :rate="($player._progress * 100) / $player._duration" size="5.6vw"
+              :stroke-width="120" color="#475165" layer-color="#C7CBD2" />
+          <Icon :icon="`${$player._playing ? 'carbon:pause-filled' : 'ph:play-fill'}`" width="11px"
+              class="top-1/2 left-1/2 translate-x-[-50%]  translate-y-[-50%] absolute" @click.native="playFn" />
+      </div>
+      <!-- 播放列表 -->
+      <div class="pl-[4.5vw]">
+          <Icon icon="iconamoon:playlist-fill" class="text-[6vw] text-[#3b4152]" @click.native="show = !show" />
+      </div>
+
+
+      <!-- 播放列表 -->
+      <van-popup class="rounded-t-[20px] px-[5.4vw]" v-model="show" position="bottom" :style="{ height: '60%' }">
+          <div class="playmusic py-[6vw]">
+              <h1 class="text-[4vw] font-extrabold">
+                  当前播放 <span class="text-[2vw] text-[#929293]">({{ music.length }}) </span>
+              </h1>
+              <div class="flex justify-between mt-[6.6vw] items-center">
+                  <div class="flex">
+                      <!-- 列表循环图标 -->
+                      <Icon icon="arcticons:loopboard" :horizontalFlip="true" class="text-[5vw] text-[#B1B1B1]" />
+                      <h1 class="ml-[1.5vw] text-[3.4vw] font-medium">列表循环</h1>
+                  </div>
+                  <div class="flex w-[30vw] justify-between">
+                      <!-- 下载图标 -->
+                      <Icon icon="mi:download" :horizontalFlip="true" class="text-[5vw] text-[#B1B1B1]" />
+                      <!-- 收藏图标 -->
+                      <Icon icon="fluent:collections-20-regular" :horizontalFlip="true"
+                          class="text-[5vw] text-[#B1B1B1]" />
+                      <!-- 删除 -->
+                      <Icon icon="fluent-mdl2:delete" :horizontalFlip="true" class="text-[5vw] text-[#B1B1B1]" />
+                  </div>
               </div>
-              <div class="text-[white] dark:text-[black] w-[13vw] flex justify-between items-center">
-                <!-- <Icon class="text-[white] dark:text-[black]" icon="ph:monitor-play-fill" width="20" height="20" />
-                <Icon  class="text-[white] dark:text-[black]" icon="simple-line-icons:options-vertical" width="20" /> -->
-                <Icon icon="bi:x" color="#7f7f7f" width="20" />
+          </div>
+          <!-- 歌曲列表 -->
+          <div>
+              <div v-for="(item, index) in music" :key="index.id" class="flex justify-between items-center h-[14vw]"
+                  @click="playSingle(item.id)">
+                  <div class="flex items-center">
+                      <img src="/static/wave.gif" class="red-image w-[2vw] h-[2vw]"
+                          v-if="item.id === $player._currentTrack.id" alt="" />
+                      <h1 class="text-[4.1vw] ml-[2vw] w-[60vw] line-clamp-1"
+                          :class="item.id === $player._currentTrack.id ? 'text-[#D15B57]' : ''">
+                          {{ item.name }}
+                          <span :class="item.id === $player._currentTrack.id ? 'text-[#D15B57]' : ''"
+                              class="text-[3vw] text-[#BCBCBC]">-{{ item.ar[0].name }}</span>
+                      </h1>
+                  </div>
+                  <div class="flex items-center">
+                      <p class="text-[3vw] mr-[6vw] text-[#BCBCBC]" v-if="item.id === $player._currentTrack.id">播放来源</p>
+                      <Icon @click.native="fn(index, item.id)" icon="ic:baseline-close" :horizontalFlip="true"
+                          class="text-[5vw] text-[#B1B1B1]" />
+                  </div>
               </div>
-            </li>
-          </ul>
-              </div>
-              </div>
-        </van-popup>
-    </div>
-</template>                      
+          </div>
+      </van-popup>
+
+  </div>
+</template>
+
 <script>
-import Player from "./player"
-import {songQu} from "@/request"
+import store from 'storejs'
+// Vue.use(Player);
 export default {
-    data() {
-        return {
-            Player: new Player(),
-            show:false,
-            currentRate:0,
-            fetch:[],
-            play:window.$player?._playing,
-            xian:true,
-            yin:false
-        }
-    },
-    computed: {
-    text() {
-      return this.currentRate.toFixed(0) + '%';
-    },
+  data() {
+      return {
+          currentRate: 0,
+          isRotating: false,//旋转
+          angle: 0,
+          show: false,
+          music: [],
+      };
   },
-    methods:{
-        display(){
-            this.show = !this.show
-        },
-        shows(){
-          this.xian=!this.xian;
-          this.yin=!this.yin;
-        }
-    },
-     async created() {
-        console.log(this.Player);
-        window.$player = this.Player,
-        songQu(this.$route.query.id).then((res) => {
-          // console.log(res)
-          this.fetch = res.data.songs 
-          // console.log(this.fetch);
-        })
-    },
-   
+  methods: {
+      playFn() {
+          this.$player.playOrPause();
+      },
+      fn(index, id) {
+         
+          if (this.$player._currentTrack.id === id) {
+              this.playSingle(this.music[index + 1].id);
+          }
+          this.music.splice(index, 1);
+          store.set('cookie_music', this.music);
+      },
+      playerAll() {
+          this.$player.replacePlaylist(
+              this.music.map((data) => data.id), '', ''
+          );
+      },
+      playSingle(id) {
+          this.$player.replacePlaylist([id], '', '');
+          store.set('cookie_music', this.music);
+      },
+
+  },
+  created() {
+      console.log(this.$player)
+      this.music = store.get('cookie_music');
+      console.log(this.music);
+  },
+  computed: {
+      text() {
+          return this.currentRate.toFixed(0) + '%';
+      },
+  },
 }
 </script>
-<style>
-.van-circle{
-    width: 25px !important;
-}
-.rotate-container {
-  position: relative;
+
+<style scoped>
+.rotateAnimation {
+  animation: rotate 10s linear infinite;
 }
 
-.rotate-image {
-  animation: rotate 10s infinite linear; /* 调整动画的持续时间和速度根据实际需要 */
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+
+  to {
+      transform: rotate(360deg);
+  }
 }
 
 .paused-animation {
   animation-play-state: paused;
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.red-image {
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='colorize'><feColorMatrix type='matrix' values='1 0 0 0 0.698 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/></filter></svg>#colorize");
 }
 
+.playmusic {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  left: 0;
+  background-color: white;
+}
 </style>
