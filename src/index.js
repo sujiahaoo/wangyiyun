@@ -6,7 +6,12 @@ import Switch from './compontents/Switch.vue';
 import formateTime from './utils/formateTime';
 import router from './router';
 import Player from '@/compontents/player/player';
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
+Vue.component('VueSlider', VueSlider)
 Vue.use(Player);
+import dayjs from 'dayjs';
+Vue.prototype.dayjs = dayjs;
 
 // Vue.use(Player);
 Vue.component('V-Switch', Switch);

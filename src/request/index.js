@@ -64,3 +64,10 @@ export const getTrackDetail = (id) => http.get('/song/detail', { params: { ids: 
 
 export const getUpdate = (gender,birthday,nickname,province,city,signature) => http.get('/user/update', { params: { gender,birthday,nickname,province,city,signature} });
 
+/**
+ * @descriptiong MV排行
+ */
+
+// MV排行
+export const MvList = (area) =>
+  http.get('/top/mv', { params: { limit: 50, area } });

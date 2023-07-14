@@ -15,7 +15,7 @@
           <van-circle v-model="currentRate" :rate="($player._progress * 100) / $player._duration" size="5.6vw"
               :stroke-width="120" color="#475165" layer-color="#C7CBD2" />
           <Icon :icon="`${$player._playing ? 'carbon:pause-filled' : 'ph:play-fill'}`" width="11px"
-              class="top-1/2 left-1/2 translate-x-[-50%]  translate-y-[-50%] absolute" @click.native="playFn" />
+              class="top-1/2 left-1/2 translate-x-[-50%]  translate-y-[-50%] absolute" @click.native="this.$player.playOrPause();" />
       </div>
       <!-- 播放列表 -->
       <div class="pl-[4.5vw]">
@@ -86,9 +86,7 @@ export default {
       };
   },
   methods: {
-      playFn() {
-          this.$player.playOrPause();
-      },
+    
       fn(index, id) {
          
           if (this.$player._currentTrack.id === id) {
@@ -121,7 +119,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .rotateAnimation {
   animation: rotate 10s linear infinite;
 }
