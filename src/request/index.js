@@ -71,3 +71,6 @@ export const getUpdate = (gender,birthday,nickname,province,city,signature) => h
 // MV排行
 export const MvList = (area) =>
   http.get('/top/mv', { params: { limit: 50, area } });
+
+  // 歌词
+  export const fetchLyricRequest =  (id) => http.get('/lyric', { params: { ids: id } });

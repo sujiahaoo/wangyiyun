@@ -11,6 +11,7 @@
 
 </template>
 <script>
+import store from 'storejs'
 export default {
     //model主要去配置v-model指令所需使用的,属性和事件名
     model: {
@@ -25,9 +26,9 @@ export default {
     },
     methods: {
         toggle() {
-            this.$emit('updaye:value', !this.value);
+            // this.$emit('updaye:value', !this.value);
             this.$emit('input', !this.value)
-
+            store.set('switch',!this.value)
         }
     }
 }

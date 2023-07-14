@@ -565,9 +565,9 @@ import {
 export default {
   data() {
     return {
-      user:{},
+      user:{},    
       switchCheckStatus: true,
-      switchCheckout: false,
+      switchCheckout:null,
       drawerVisible: false,
       drawerXian: false,
       visible: 0,
@@ -672,6 +672,7 @@ export default {
 
 
   async created() {
+    this.switchCheckout=store.get('switch')
     // 通过接口获取数据并存入内存中
     const resUser = await getUserAccount();
             // console.log(resUser);

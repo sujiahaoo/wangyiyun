@@ -74,5 +74,10 @@ export default [
     // 懒加载组件
     component:()=>import('@/views/MVleaderboardView.vue')
   },
+  {
+    path: '/VideoPayerView',
+    // 懒加载组件
+    component:()=>import('@/views/VideoPayerView.vue')
+  },
 ]
 

@@ -17,8 +17,8 @@ export default {
                     <div class="mt-[3vw]">
                         <ul class="w-screen h-[54vw] bg-[white]">
                             <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">头像</span><span class="flex   items-center mr-[5vw]"><img src={this.userData.avatarUrl} alt="" class="w-[12vw] h-[12vw] rounded-full" /> <van-icon name="arrow" color="#CECFD1" /></span></li>
-                            <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">昵称</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]" onClick={this.isShowName}>{ this.arr[2]}<van-icon name="arrow" color="#CECFD1" /></span></li>
-                            <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">性别</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]" onClick={this.isshows} > {this. Sex(this.arr[0])}<van-icon name="arrow" color="#CECFD1" /></span></li>
+                            <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">昵称</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]" onClick={this.isShowName}>{this.arr[2]}<van-icon name="arrow" color="#CECFD1" /></span></li>
+                            <li class="flex justify-between border-b-[1px] h-[13vw] border-[#E8EAEC]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">性别</span><span class="flex   items-center mr-[5vw] text-[#CECFD1]" onClick={this.isshows} > {this.Sex(this.arr[0])}<van-icon name="arrow" color="#CECFD1" /></span></li>
                             <li class="flex justify-between  h-[13vw]  items-center "><span class="ml-[4vw] text-[5vw] text-[#545A6B]">二维码</span><span class="flex   items-center mr-[5vw]"><van-icon name="enlarge" color="#CECFD1" class="mr-[2vw]" /><van-icon name="arrow" color="#CECFD1" /></span></li>
                         </ul>
                         <ul class="w-screen mt-[3vw] bg-[white]">
@@ -78,20 +78,20 @@ export default {
 
                         </van-popup> */}
                         {/* 更换昵称 */}
-                    <van-popup v-model={this.showName} position="bottom" style={{ height: '100%' }}>
-                        <header class="bg-white h-[15.46vw] flex items-center justify-between px-[4.7vw] text-[4.85vw] font-[800]">
-                            <div class="flex justify-start items-center">
-                                <Icon nativeOnClick={() => { this.showName=false }} class="w-[5.64vw] h-[5.6vw] font-[800] mr-[5.08vw]" icon="icon-park-outline:arrow-left" />
-                                <p class="text-[4.63vw]">修改昵称</p>
+                        <van-popup v-model={this.showName} position="bottom" style={{ height: '100%' }}>
+                            <header class="bg-white h-[15.46vw] flex items-center justify-between px-[4.7vw] text-[4.85vw] font-[800]">
+                                <div class="flex justify-start items-center">
+                                    <Icon nativeOnClick={() => { this.showName = false }} class="w-[5.64vw] h-[5.6vw] font-[800] mr-[5.08vw]" icon="icon-park-outline:arrow-left" />
+                                    <p class="text-[4.63vw]">修改昵称</p>
+                                </div>
+                                <p onClick={this.confirm3} class="text[3.84vw]">保存</p>
+                            </header>
+                            <div class="w-screen h-[20vw] pl-[4.85vw] pr-[2.48vw] relative flex items-center">
+                                <input v-model={this.value} type="text" class="w-[100%] h-[10.95vw] px-[2vw] leading-[10.95vw] border-b-[0.32vw] border-[#000] outline-none" />
+                                <Icon class="text-[#adadad] w-[5.27vw] h-[5.05vw] absolute top-[8vw] right-[3.21vw]" icon="line-md:remove" />
                             </div>
-                            <p onClick={this.confirm3} class="text[3.84vw]">保存</p>
-                        </header>
-                        <div class="w-screen h-[20vw] pl-[4.85vw] pr-[2.48vw] relative flex items-center">
-                            <input v-model={this.value} type="text"  class="w-[100%] h-[10.95vw] px-[2vw] leading-[10.95vw] border-b-[0.32vw] border-[#000] outline-none" />
-                            <Icon class="text-[#adadad] w-[5.27vw] h-[5.05vw] absolute top-[8vw] right-[3.21vw]" icon="line-md:remove" />
-                        </div>
-                        {/* <van-picker show-toolbar columns={this.columns} default-index={this.data.profile.gender} onConfirm={this.confirmSex} onCancel={() => { this.nameVisible = false }} /> */}
-                    </van-popup>
+                            {/* <van-picker show-toolbar columns={this.columns} default-index={this.data.profile.gender} onConfirm={this.confirmSex} onCancel={() => { this.nameVisible = false }} /> */}
+                        </van-popup>
                     </div>
                 </div>
             </Wrapper>
@@ -114,9 +114,12 @@ export default {
             arr: [],
             columns: ['男', '女'],
             value: '',
+            switchCheckout: null,
+
         }
     },
     async created() {
+        this.switchCheckout = store.get('switch')
         const resUser = await getUserAccount();
         store.set('_cookieMusic', resUser.data.profile);
         const res = await getUserDetail(resUser.data.profile.userId)
@@ -138,14 +141,14 @@ export default {
             })
         },
         // 生日
-        async  confirm1(e) {
+        async confirm1(e) {
             this.show = !this.show;
             // console.log(e);
             const dateString = e;
             const date = new Date(dateString);
             const timestamp = date.getTime();
             console.log(timestamp);
-            this.arr[1]=timestamp
+            this.arr[1] = timestamp
             await getUpdate(this.arr[0], this.arr[1], this.arr[2], this.arr[3], this.arr[4], this.arr[5]).then(res => {
                 // console.log('修改地区:'+ res);
             })
@@ -154,11 +157,11 @@ export default {
         async confirm2(e) {
             this.isShow = !this.isShow;
             // console.log(e);
-            if(e==='男'){
-              
-                this.arr[0]=1
-            }else{
-                this.arr[0]=2
+            if (e === '男') {
+
+                this.arr[0] = 1
+            } else {
+                this.arr[0] = 2
             }
             await getUpdate(this.arr[0], this.arr[1], this.arr[2], this.arr[3], this.arr[4], this.arr[5]).then(res => {
                 // console.log('修改地区:'+ res);
@@ -167,7 +170,7 @@ export default {
         // 昵称
         async confirm3() {
             this.showName = !this.showName;
-            this.arr[2]= this.value
+            this.arr[2] = this.value
             console.log(this.arr[2]);
             await getUpdate(this.arr[0], this.arr[1], this.arr[2], this.arr[3], this.arr[4], this.arr[5]).then(res => {
                 // console.log('修改地区:'+ res);
@@ -209,11 +212,11 @@ export default {
                 return ''
             }
         },
-        Timer(n){
-            
-           return `${new Date(n).getFullYear()}-${String(new Date(n).getMonth() + 1).padStart(2, '0')}-${String(new Date(n).getDate()).padStart(2, '0')}`;
+        Timer(n) {
+
+            return `${new Date(n).getFullYear()}-${String(new Date(n).getMonth() + 1).padStart(2, '0')}-${String(new Date(n).getDate()).padStart(2, '0')}`;
         },
-     
+
     }
 
 }
